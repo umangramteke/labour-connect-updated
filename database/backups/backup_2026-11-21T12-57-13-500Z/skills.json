@@ -1,0 +1,142 @@
+[
+  {
+    "_id": "6b0194938343c0f44f26c395",
+    "name": "Masonry",
+    "__v": 0,
+    "category": "Construction",
+    "createdAt": "2026-11-21T12:54:43.548Z",
+    "description": "Bricklaying, stone work, concrete mixing, and plastering",
+    "id": 1,
+    "updatedAt": "2026-11-21T12:56:19.380Z"
+  },
+  {
+    "_id": "6b0194938343c0f44f26c396",
+    "name": "Carpentry",
+    "__v": 0,
+    "category": "Woodwork",
+    "createdAt": "2026-11-21T12:54:43.549Z",
+    "description": "Furniture making, doors/windows fixing, and structural woodwork",
+    "id": 2,
+    "updatedAt": "2026-11-21T12:56:19.381Z"
+  },
+  {
+    "_id": "6b0194938343c0f44f26c397",
+    "name": "Plumbing",
+    "__v": 0,
+    "category": "Maintenance",
+    "createdAt": "2026-11-21T12:54:43.550Z",
+    "description": "Pipe installation, sanitary fixtures, and drainage maintenance",
+    "id": 3,
+    "updatedAt": "2026-11-21T12:56:19.382Z"
+  },
+  {
+    "_id": "6b0194938343c0f44f26c398",
+    "name": "Electrical Wiring",
+    "__v": 0,
+    "category": "Electrical",
+    "createdAt": "2026-11-21T12:54:43.551Z",
+    "description": "House wiring, electrical fixture installations, and fault diagnosis",
+    "id": 4,
+    "updatedAt": "2026-11-21T12:56:19.383Z"
+  },
+  {
+    "_id": "6b0194938343c0f44f26c399",
+    "name": "House Painting",
+    "__v": 0,
+    "category": "Finishing",
+    "createdAt": "2026-11-21T12:54:43.552Z",
+    "description": "Interior and exterior wall painting, primer, and waterproofing",
+    "id": 5,
+    "updatedAt": "2026-11-21T12:56:19.384Z"
+  },
+  {
+    "_id": "6b0194938343c0f44f26c39a",
+    "name": "Tile Laying",
+    "__v": 0,
+    "category": "Flooring",
+    "createdAt": "2026-11-21T12:54:43.552Z",
+    "description": "Floor and wall ceramic/granite tile installation",
+    "id": 6,
+    "updatedAt": "2026-11-21T12:56:19.385Z"
+  },
+  {
+    "_id": "6b0194938343c0f44f26c39b",
+    "name": "Welding & Fabrication",
+    "__v": 0,
+    "category": "Metalwork",
+    "createdAt": "2026-11-21T12:54:43.553Z",
+    "description": "Arc welding, gate fabrication, and metal repairs",
+    "id": 7,
+    "updatedAt": "2026-11-21T12:56:19.386Z"
+  },
+  {
+    "_id": "6b0194938343c0f44f26c39c",
+    "name": "Loading & Unloading",
+    "__v": 0,
+    "category": "Logistics",
+    "createdAt": "2026-11-21T12:54:43.554Z",
+    "description": "Heavy cargo loading, warehouse material shifting, and logistics",
+    "id": 8,
+    "updatedAt": "2026-11-21T12:56:19.387Z"
+  },
+  {
+    "_id": "6b0194938343c0f44f26c39d",
+    "name": "General Construction Labour",
+    "__v": 0,
+    "category": "Construction",
+    "createdAt": "2026-11-21T12:54:43.554Z",
+    "description": "Site clearing, excavation, earth moving, and material helper",
+    "id": 9,
+    "updatedAt": "2026-11-21T12:56:19.388Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c39e",
+    "name": "Bar Bending / Steel Fixing",
+    "__v": 0,
+    "category": "Construction",
+    "createdAt": "2026-11-21T12:55:18.011Z",
+    "description": "Reinforcement steel bar bending and tying for RCC structures",
+    "id": 10,
+    "updatedAt": "2026-11-21T12:56:19.390Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c39f",
+    "name": "Retail Sales & Customer Service",
+    "__v": 0,
+    "category": "Retail & Sales",
+    "createdAt": "2026-11-21T12:55:18.012Z",
+    "description": "Showroom sales, customer assistance, billing, and product demonstrations",
+    "id": 11,
+    "updatedAt": "2026-11-21T12:56:19.390Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c3a0",
+    "name": "Shop Assistant & Inventory",
+    "__v": 0,
+    "category": "Retail & Sales",
+    "createdAt": "2026-11-21T12:55:18.014Z",
+    "description": "Stock handling, inventory checking, shop upkeep, and customer support",
+    "id": 12,
+    "updatedAt": "2026-11-21T12:56:19.391Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c3a1",
+    "name": "Cashier & Billing",
+    "__v": 0,
+    "category": "Commerce",
+    "createdAt": "2026-11-21T12:55:18.015Z",
+    "description": "POS counter billing, cash handling, and daily accounts reconciliation",
+    "id": 13,
+    "updatedAt": "2026-11-21T12:56:19.392Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c3a2",
+    "name": "Office Assistant",
+    "__v": 0,
+    "category": "Administration",
+    "createdAt": "2026-11-21T12:55:18.016Z",
+    "description": "Office maintenance, document handling, filing, and errand support",
+    "id": 14,
+    "updatedAt": "2026-11-21T12:56:19.393Z"
+  }
+]

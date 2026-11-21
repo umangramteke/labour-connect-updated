@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "6b0194b68343c0f44f26c3a3",
+    "slug": "plumbing",
+    "__v": 0,
+    "active": true,
+    "createdAt": "2026-11-21T12:55:18.019Z",
+    "description": "Pipe leaks, tap repair, bathroom fittings, water tank and drainage solutions",
+    "iconName": "Wrench",
+    "id": 1,
+    "name": "Plumbing Services",
+    "updatedAt": "2026-11-21T12:56:19.395Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c3a4",
+    "slug": "electrical",
+    "__v": 0,
+    "active": true,
+    "createdAt": "2026-11-21T12:55:18.020Z",
+    "description": "Short circuit fix, switchboard installation, ceiling fans, lighting, and wiring",
+    "iconName": "Zap",
+    "id": 2,
+    "name": "Electrical Repair",
+    "updatedAt": "2026-11-21T12:56:19.410Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c3a5",
+    "slug": "carpentry",
+    "__v": 0,
+    "active": true,
+    "createdAt": "2026-11-21T12:55:18.021Z",
+    "description": "Door lock fixing, furniture repair, wooden partitioning, and custom fittings",
+    "iconName": "Hammer",
+    "id": 3,
+    "name": "Carpentry & Woodwork",
+    "updatedAt": "2026-11-21T12:56:19.412Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c3a6",
+    "slug": "painting",
+    "__v": 0,
+    "active": true,
+    "createdAt": "2026-11-21T12:55:18.022Z",
+    "description": "Wall repainting, putty work, waterproof coatings, and wood varnish",
+    "iconName": "Paintbrush",
+    "id": 4,
+    "name": "House Painting & Polishing",
+    "updatedAt": "2026-11-21T12:56:19.413Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c3a7",
+    "slug": "appliance-repair",
+    "__v": 0,
+    "active": true,
+    "createdAt": "2026-11-21T12:55:18.022Z",
+    "description": "Air conditioner servicing, washing machines, refrigerators, and microwave repairs",
+    "iconName": "Tv",
+    "id": 5,
+    "name": "Appliance Repair",
+    "updatedAt": "2026-11-21T12:56:19.414Z"
+  },
+  {
+    "_id": "6b0194b68343c0f44f26c3a8",
+    "slug": "mechanical",
+    "__v": 0,
+    "active": true,
+    "createdAt": "2026-11-21T12:55:18.024Z",
+    "description": "Emergency roadside puncture, two-wheeler servicing, and mechanical checks",
+    "iconName": "Car",
+    "id": 6,
+    "name": "Automobile & Mechanics",
+    "updatedAt": "2026-11-21T12:56:19.415Z"
+  }
+]

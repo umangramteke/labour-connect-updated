@@ -1,0 +1,102 @@
+[
+  {
+    "_id": "6b0194b65b5e83309290a4b8",
+    "id": 1,
+    "userId": 12,
+    "businessName": "Sunil Master Plumbers",
+    "bio": "Licensed plumbing contractor. Emergency water leak repair, bathroom renovations, and pipe fittings.",
+    "yearsOfExperience": 6,
+    "baseRate": 350,
+    "hourlyRate": 200,
+    "city": "Bangalore",
+    "serviceAreaRadiusKm": 20,
+    "latitude": 12.9784,
+    "longitude": 77.6408,
+    "verificationStatus": "APPROVED",
+    "verificationNotes": null,
+    "idProofUrl": null,
+    "verifiedAt": "2026-10-22T12:55:18.771Z",
+    "available": true,
+    "categoryIds": [
+      1
+    ],
+    "createdAt": "2026-11-21T12:55:18.771Z",
+    "updatedAt": "2026-11-21T12:55:18.771Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4be",
+    "id": 2,
+    "userId": 13,
+    "businessName": "SparkVolt Electrical Solutions",
+    "bio": "Master electricians for short circuit repair, DB box upgrades, switchboard setup, and inverter wiring.",
+    "yearsOfExperience": 8,
+    "baseRate": 400,
+    "hourlyRate": 250,
+    "city": "Bangalore",
+    "serviceAreaRadiusKm": 25,
+    "latitude": 12.9352,
+    "longitude": 77.6245,
+    "verificationStatus": "APPROVED",
+    "verificationNotes": null,
+    "idProofUrl": null,
+    "verifiedAt": "2026-10-22T12:55:18.830Z",
+    "available": true,
+    "categoryIds": [
+      2
+    ],
+    "createdAt": "2026-11-21T12:55:18.830Z",
+    "updatedAt": "2026-11-21T12:55:18.830Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4c4",
+    "id": 3,
+    "userId": 14,
+    "businessName": "MasterCraft Furniture & Carpentry",
+    "bio": "Expert carpenters for door lock alignment, wooden wardrobe repair, kitchen drawer channels, and partitions.",
+    "yearsOfExperience": 7,
+    "baseRate": 450,
+    "hourlyRate": 220,
+    "city": "Bangalore",
+    "serviceAreaRadiusKm": 20,
+    "latitude": 12.9121,
+    "longitude": 77.6446,
+    "verificationStatus": "APPROVED",
+    "verificationNotes": null,
+    "idProofUrl": null,
+    "verifiedAt": "2026-10-22T12:55:18.898Z",
+    "available": true,
+    "categoryIds": [
+      3
+    ],
+    "createdAt": "2026-11-21T12:55:18.898Z",
+    "updatedAt": "2026-11-21T12:55:18.898Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4ca",
+    "id": 4,
+    "userId": 15,
+    "businessName": "ColorPro Home Painting & Waterproofing",
+    "bio": "Reliable residential painters for interior wall touch-ups, waterproof primer, and wood polish.",
+    "yearsOfExperience": 5,
+    "baseRate": 500,
+    "hourlyRate": 180,
+    "city": "Bangalore",
+    "serviceAreaRadiusKm": 20,
+    "latitude": 12.9698,
+    "longitude": 77.75,
+    "verificationStatus": "APPROVED",
+    "verificationNotes": null,
+    "idProofUrl": null,
+    "verifiedAt": "2026-10-22T12:55:18.955Z",
+    "available": true,
+    "categoryIds": [
+      4
+    ],
+    "createdAt": "2026-11-21T12:55:18.955Z",
+    "updatedAt": "2026-11-21T12:55:18.955Z",
+    "__v": 0
+  }
+]

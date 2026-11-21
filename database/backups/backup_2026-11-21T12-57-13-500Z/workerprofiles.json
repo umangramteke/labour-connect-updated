@@ -1,0 +1,108 @@
+[
+  {
+    "_id": "6b0194b65b5e83309290a484",
+    "id": 1,
+    "userId": 4,
+    "headline": "Senior Master Mason & Plaster Specialist",
+    "bio": "Residential masonry, bricklaying, and cement plastering.",
+    "yearsOfExperience": 8,
+    "dailyRate": 1000,
+    "hourlyRate": 150,
+    "city": "Bangalore",
+    "area": "Indiranagar",
+    "latitude": 12.9716,
+    "longitude": 77.5946,
+    "availabilityStatus": "AVAILABLE",
+    "skillIds": [
+      1,
+      9
+    ],
+    "createdAt": "2026-11-21T12:55:18.277Z",
+    "updatedAt": "2026-11-21T12:56:20.029Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a48a",
+    "id": 2,
+    "userId": 5,
+    "headline": "Master Woodwork & Furniture Carpenter",
+    "bio": "Custom wardrobes, doors, windows, and modular cabinetry.",
+    "yearsOfExperience": 6,
+    "dailyRate": 1000,
+    "hourlyRate": 160,
+    "city": "Bangalore",
+    "area": "Koramangala",
+    "latitude": 12.9352,
+    "longitude": 77.6245,
+    "availabilityStatus": "AVAILABLE",
+    "skillIds": [
+      2
+    ],
+    "createdAt": "2026-11-21T12:55:18.338Z",
+    "updatedAt": "2026-11-21T12:55:18.338Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a490",
+    "id": 3,
+    "userId": 6,
+    "headline": "Certified Electrical Wiring Specialist",
+    "bio": "Single-phase and 3-phase industrial and house wiring.",
+    "yearsOfExperience": 7,
+    "dailyRate": 1100,
+    "hourlyRate": 175,
+    "city": "Bangalore",
+    "area": "Whitefield",
+    "latitude": 12.9698,
+    "longitude": 77.75,
+    "availabilityStatus": "AVAILABLE",
+    "skillIds": [
+      4
+    ],
+    "createdAt": "2026-11-21T12:55:18.398Z",
+    "updatedAt": "2026-11-21T12:55:18.398Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a496",
+    "id": 4,
+    "userId": 7,
+    "headline": "Professional Wall Painter & Putty Artist",
+    "bio": "Interior emulsion, exterior weather coats, and waterproof priming.",
+    "yearsOfExperience": 5,
+    "dailyRate": 850,
+    "hourlyRate": 130,
+    "city": "Bangalore",
+    "area": "HSR Layout",
+    "latitude": 12.9121,
+    "longitude": 77.6446,
+    "availabilityStatus": "AVAILABLE",
+    "skillIds": [
+      5
+    ],
+    "createdAt": "2026-11-21T12:55:18.463Z",
+    "updatedAt": "2026-11-21T12:55:18.463Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a49c",
+    "id": 5,
+    "userId": 8,
+    "headline": "Precision Granite & Vitrified Tile Layer",
+    "bio": "High-precision floor leveling, granite borders, and bathroom tiling.",
+    "yearsOfExperience": 9,
+    "dailyRate": 1050,
+    "hourlyRate": 170,
+    "city": "Bangalore",
+    "area": "Jayanagar",
+    "latitude": 12.9308,
+    "longitude": 77.5838,
+    "availabilityStatus": "AVAILABLE",
+    "skillIds": [
+      6
+    ],
+    "createdAt": "2026-11-21T12:55:18.524Z",
+    "updatedAt": "2026-11-21T12:55:18.524Z",
+    "__v": 0
+  }
+]

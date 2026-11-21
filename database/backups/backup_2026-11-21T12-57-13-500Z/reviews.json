@@ -1,0 +1,41 @@
+[
+  {
+    "_id": "6b0194b75b5e83309290a54c",
+    "id": 1,
+    "reviewerId": 9,
+    "revieweeId": 12,
+    "jobId": null,
+    "serviceRequestId": 1,
+    "rating": 5,
+    "reviewText": "Prompt arrival! Sunil detected the cracked angle valve immediately and replaced it in 30 minutes. Clean and tidy work.",
+    "createdAt": "2026-11-21T12:55:19.051Z",
+    "updatedAt": "2026-11-21T12:55:19.051Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b75b5e83309290a552",
+    "id": 2,
+    "reviewerId": 10,
+    "revieweeId": 13,
+    "jobId": null,
+    "serviceRequestId": 2,
+    "rating": 5,
+    "reviewText": "Very knowledgeable electrician. Identified an overloaded circuit and balanced the phase lines perfectly. High quality work.",
+    "createdAt": "2026-11-21T12:55:19.056Z",
+    "updatedAt": "2026-11-21T12:55:19.056Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b75b5e83309290a556",
+    "id": 3,
+    "reviewerId": 2,
+    "revieweeId": 4,
+    "jobId": 1,
+    "serviceRequestId": null,
+    "rating": 5,
+    "reviewText": "Suresh is an exceptional bricklayer. Punctual, honest, and delivered pristine plaster joint finish. Highly recommended.",
+    "createdAt": "2026-11-21T12:55:19.059Z",
+    "updatedAt": "2026-11-21T12:55:19.059Z",
+    "__v": 0
+  }
+]

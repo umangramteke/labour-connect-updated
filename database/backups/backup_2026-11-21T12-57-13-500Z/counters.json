@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "roles",
+    "__v": 0,
+    "seq": 5
+  },
+  {
+    "_id": "skills",
+    "__v": 0,
+    "seq": 14
+  },
+  {
+    "_id": "service_categories",
+    "__v": 0,
+    "seq": 6
+  },
+  {
+    "_id": "employer_profiles",
+    "__v": 0,
+    "seq": 2
+  },
+  {
+    "_id": "worker_profiles",
+    "__v": 0,
+    "seq": 5
+  },
+  {
+    "_id": "customer_profiles",
+    "__v": 0,
+    "seq": 3
+  },
+  {
+    "_id": "provider_profiles",
+    "__v": 0,
+    "seq": 4
+  },
+  {
+    "_id": "users",
+    "__v": 0,
+    "seq": 15
+  },
+  {
+    "_id": "jobs",
+    "__v": 0,
+    "seq": 16
+  },
+  {
+    "_id": "job_applications",
+    "__v": 0,
+    "seq": 14
+  },
+  {
+    "_id": "service_requests",
+    "__v": 0,
+    "seq": 9
+  },
+  {
+    "_id": "reviews",
+    "__v": 0,
+    "seq": 3
+  },
+  {
+    "_id": "complaints",
+    "__v": 0,
+    "seq": 2
+  },
+  {
+    "_id": "audit_logs",
+    "__v": 0,
+    "seq": 5
+  }
+]

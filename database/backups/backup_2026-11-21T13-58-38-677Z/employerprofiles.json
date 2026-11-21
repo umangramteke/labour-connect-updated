@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "6b0194b65b5e83309290a476",
+    "id": 1,
+    "userId": 2,
+    "companyName": "Apex Construction & Hardware Stores",
+    "businessType": "CONTRACTOR",
+    "address": "45 Ring Road, Indiranagar",
+    "city": "Bangalore",
+    "contactPerson": "Ramesh Kumar",
+    "phone": "+91-9123456780",
+    "createdAt": "2026-11-21T12:55:18.157Z",
+    "updatedAt": "2026-11-21T12:55:18.157Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a47c",
+    "id": 2,
+    "userId": 3,
+    "companyName": "UrbanEdge Interior Design & Renovations",
+    "businessType": "ENTERPRISE",
+    "address": "122 100-Ft Road, Indiranagar",
+    "city": "Bangalore",
+    "contactPerson": "Kavita Rao",
+    "phone": "+91-9123456789",
+    "createdAt": "2026-11-21T12:55:18.216Z",
+    "updatedAt": "2026-11-21T12:55:18.216Z",
+    "__v": 0
+  }
+]

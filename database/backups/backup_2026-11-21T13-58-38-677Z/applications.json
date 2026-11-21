@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "6ada6e85e456a819c4b43fef",
+    "job": "6ada6e85e456a819c4b43fe9",
+    "applicantName": "Suresh Patil",
+    "phone": "9845123456",
+    "email": "suresh.patil@example.com",
+    "experience": 4,
+    "coverNote": "I have 4 years of industrial electrical wiring experience with ITI certificate.",
+    "status": "Pending",
+    "appliedAt": "2026-10-22T20:13:57.535Z",
+    "createdAt": "2026-10-22T20:13:57.537Z",
+    "updatedAt": "2026-10-22T20:13:57.537Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ada6ef943fecb34117fbe35",
+    "job": "6ada6e85e456a819c4b43fe9",
+    "applicantName": "Nitin Sonawane",
+    "phone": "9833445566",
+    "email": "nitin.s@example.com",
+    "experience": 3,
+    "coverNote": "Experienced in electrical troubleshooting and maintenance.",
+    "status": "Pending",
+    "appliedAt": "2026-10-22T20:15:53.786Z",
+    "createdAt": "2026-10-22T20:15:53.787Z",
+    "updatedAt": "2026-10-22T20:15:53.787Z",
+    "__v": 0
+  }
+]

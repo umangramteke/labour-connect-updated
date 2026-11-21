@@ -1,0 +1,67 @@
+[
+  {
+    "_id": "6b0194b75b5e83309290a564",
+    "id": 2,
+    "userId": 1,
+    "action": "RESOLVE_COMPLAINT",
+    "entityName": "Complaint",
+    "entityId": 1,
+    "details": "Complaint regarding appointment delay resolved amicably",
+    "ipAddress": "127.0.0.1",
+    "createdAt": "2026-11-21T12:55:19.084Z",
+    "updatedAt": "2026-11-21T12:55:19.084Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b75b5e83309290a563",
+    "id": 1,
+    "userId": 1,
+    "action": "VERIFY_PROVIDER",
+    "entityName": "ProviderProfile",
+    "entityId": 1,
+    "details": "Provider Sunil Master Plumbers approved after ID verification",
+    "ipAddress": "127.0.0.1",
+    "createdAt": "2026-11-21T12:55:19.084Z",
+    "updatedAt": "2026-11-21T12:55:19.084Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b75b5e83309290a565",
+    "id": 3,
+    "userId": 1,
+    "action": "CATALOG_UPDATE",
+    "entityName": "ServiceCategory",
+    "entityId": 1,
+    "details": "Verified category active status for plumbing services",
+    "ipAddress": "127.0.0.1",
+    "createdAt": "2026-11-21T12:55:19.084Z",
+    "updatedAt": "2026-11-21T12:55:19.084Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194f4f18dfee6099f6c3b",
+    "id": 4,
+    "userId": 9,
+    "action": "CREATE_SERVICE_REQUEST",
+    "entityName": "ServiceRequest",
+    "entityId": 9,
+    "details": "Service request created: Emergency bathroom pipe burst repair",
+    "ipAddress": "127.0.0.1",
+    "createdAt": "2026-11-21T12:56:20.110Z",
+    "updatedAt": "2026-11-21T12:56:20.110Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194f4f18dfee6099f6c45",
+    "id": 5,
+    "userId": 12,
+    "action": "UPDATE_SERVICE_STATUS",
+    "entityName": "ServiceRequest",
+    "entityId": 9,
+    "details": "Status changed to ACCEPTED",
+    "ipAddress": "127.0.0.1",
+    "createdAt": "2026-11-21T12:56:20.178Z",
+    "updatedAt": "2026-11-21T12:56:20.178Z",
+    "__v": 0
+  }
+]

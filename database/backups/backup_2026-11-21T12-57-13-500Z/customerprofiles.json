@@ -1,0 +1,41 @@
+[
+  {
+    "_id": "6b0194b65b5e83309290a4a4",
+    "id": 1,
+    "userId": 9,
+    "address": "Flat 302, Green Glen Layout, Bellandur",
+    "city": "Bangalore",
+    "area": "Bellandur",
+    "latitude": 12.9304,
+    "longitude": 77.6784,
+    "createdAt": "2026-11-21T12:55:18.590Z",
+    "updatedAt": "2026-11-21T12:55:18.590Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4aa",
+    "id": 2,
+    "userId": 10,
+    "address": "14th Main, Sector 4, HSR Layout",
+    "city": "Bangalore",
+    "area": "HSR Layout",
+    "latitude": 12.9121,
+    "longitude": 77.6446,
+    "createdAt": "2026-11-21T12:55:18.647Z",
+    "updatedAt": "2026-11-21T12:55:18.647Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4b0",
+    "id": 3,
+    "userId": 11,
+    "address": "Palm Meadows Villa 42, Whitefield",
+    "city": "Bangalore",
+    "area": "Whitefield",
+    "latitude": 12.9698,
+    "longitude": 77.75,
+    "createdAt": "2026-11-21T12:55:18.710Z",
+    "updatedAt": "2026-11-21T12:55:18.710Z",
+    "__v": 0
+  }
+]

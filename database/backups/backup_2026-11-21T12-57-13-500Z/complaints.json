@@ -1,0 +1,34 @@
+[
+  {
+    "_id": "6b0194b75b5e83309290a55b",
+    "id": 1,
+    "complainantId": 10,
+    "reportedUserId": 14,
+    "serviceRequestId": null,
+    "jobId": null,
+    "subject": "Slight delay in scheduled carpentering visit",
+    "description": "Provider arrived 45 minutes later than confirmed appointment slot without advance notice.",
+    "status": "RESOLVED",
+    "adminResolutionNotes": "Provider apologized in writing and issued a 10% goodwill voucher for next booking. Dispute closed satisfactorily.",
+    "resolvedByAdminId": 1,
+    "createdAt": "2026-11-21T12:55:19.063Z",
+    "updatedAt": "2026-11-21T12:55:19.063Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b75b5e83309290a55e",
+    "id": 2,
+    "complainantId": 11,
+    "reportedUserId": 15,
+    "serviceRequestId": null,
+    "jobId": null,
+    "subject": "Dispute over unquoted wall prep charges",
+    "description": "Painter requested additional Rs 400 for wall primer that was verbally agreed as included in base quote.",
+    "status": "INVESTIGATING",
+    "adminResolutionNotes": null,
+    "resolvedByAdminId": null,
+    "createdAt": "2026-11-21T12:55:19.065Z",
+    "updatedAt": "2026-11-21T12:55:19.065Z",
+    "__v": 0
+  }
+]

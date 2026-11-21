@@ -1,0 +1,257 @@
+[
+  {
+    "_id": "6b0194b65b5e83309290a470",
+    "id": 1,
+    "email": "admin@labourconnect.com",
+    "passwordHash": "$2a$10$3IYCI8.JBzIXuXOSbuFkoeZTGSiSlbt72LU8CjSzTz0ykMMVJZ9F.",
+    "fullName": "Platform Administrator",
+    "phoneNumber": "+91-9876543210",
+    "roles": [
+      "ROLE_ADMIN"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.096Z",
+    "updatedAt": "2026-11-21T12:55:18.096Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a473",
+    "id": 2,
+    "email": "employer@labourconnect.com",
+    "passwordHash": "$2a$10$bPQ.zIUWdBO3fpBuj/m98utB8AAWJT7OEI7lrZTvGzpPFbgEJqjje",
+    "fullName": "Apex Construction & Hardware",
+    "phoneNumber": "+91-9123456780",
+    "roles": [
+      "ROLE_EMPLOYER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.154Z",
+    "updatedAt": "2026-11-21T12:55:18.154Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a479",
+    "id": 3,
+    "email": "employer2@labourconnect.com",
+    "passwordHash": "$2a$10$N010O.xoEmRhLpYkj4lWAeu/qKu3YYJr5p5KcId2HlmMrP/cXCQN6",
+    "fullName": "UrbanEdge Design & Renovations",
+    "phoneNumber": "+91-9123456789",
+    "roles": [
+      "ROLE_EMPLOYER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.214Z",
+    "updatedAt": "2026-11-21T12:55:18.214Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a481",
+    "id": 4,
+    "email": "worker@labourconnect.com",
+    "passwordHash": "$2a$10$jEL6Ojlp3Tvyisiqkbige.xImzMS4QYE07cRJ4Esohdn9SrtBhfWm",
+    "fullName": "Suresh Sharma",
+    "phoneNumber": "+91-9845123456",
+    "roles": [
+      "ROLE_WORKER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.274Z",
+    "updatedAt": "2026-11-21T12:55:18.274Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a487",
+    "id": 5,
+    "email": "worker2@labourconnect.com",
+    "passwordHash": "$2a$10$716hGYutYvDQiactHN3ybehmcBYuqus6M3XA2jqqrx1LUsEVdfnlC",
+    "fullName": "Ramesh Naik",
+    "phoneNumber": "+91-9845123457",
+    "roles": [
+      "ROLE_WORKER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.335Z",
+    "updatedAt": "2026-11-21T12:55:18.335Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a48d",
+    "id": 6,
+    "email": "worker3@labourconnect.com",
+    "passwordHash": "$2a$10$Saj3JBIzK5oa.8CbqzdYH.molEUnefJ6E.DN6tKlG7Y3OrxfJxOQO",
+    "fullName": "Vikram Singh",
+    "phoneNumber": "+91-9845123458",
+    "roles": [
+      "ROLE_WORKER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.396Z",
+    "updatedAt": "2026-11-21T12:55:18.396Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a493",
+    "id": 7,
+    "email": "worker4@labourconnect.com",
+    "passwordHash": "$2a$10$3jYMDr.dUVw.UE1lSh.k5uDjol1l9/5JybeZDj47hf2F/u.QOeJt2",
+    "fullName": "Deepak Verma",
+    "phoneNumber": "+91-9845123459",
+    "roles": [
+      "ROLE_WORKER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.461Z",
+    "updatedAt": "2026-11-21T12:55:18.461Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a499",
+    "id": 8,
+    "email": "worker5@labourconnect.com",
+    "passwordHash": "$2a$10$kimfu9Mv/T/f1VdLxGVp5ePTd2nPOUn1GkeXwqNStT9mjjwG132sm",
+    "fullName": "Manoj Kumar",
+    "phoneNumber": "+91-9845123460",
+    "roles": [
+      "ROLE_WORKER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.521Z",
+    "updatedAt": "2026-11-21T12:55:18.521Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4a1",
+    "id": 9,
+    "email": "customer@labourconnect.com",
+    "passwordHash": "$2a$10$uMFKz5K6wG8p5ang96Q8uuxiAB7/qYpTWku9SfJyJ0GkZMP6ood5y",
+    "fullName": "Priya Venkatesh",
+    "phoneNumber": "+91-9988776655",
+    "roles": [
+      "ROLE_CUSTOMER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.587Z",
+    "updatedAt": "2026-11-21T12:55:18.587Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4a7",
+    "id": 10,
+    "email": "customer2@labourconnect.com",
+    "passwordHash": "$2a$10$NwSN/pq5h0z.FDR/49x7ReG/xNhMnd8kyUtNh5niCdr9Vowf3oYhK",
+    "fullName": "Anand Murthy",
+    "phoneNumber": "+91-9988776656",
+    "roles": [
+      "ROLE_CUSTOMER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.645Z",
+    "updatedAt": "2026-11-21T12:55:18.645Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4ad",
+    "id": 11,
+    "email": "customer3@labourconnect.com",
+    "passwordHash": "$2a$10$512axUJe7ufsrZ1ru0DMruACIGjNEIkVjcHIpHPbZ0kti/THha/Au",
+    "fullName": "Sneha Patel",
+    "phoneNumber": "+91-9988776657",
+    "roles": [
+      "ROLE_CUSTOMER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.708Z",
+    "updatedAt": "2026-11-21T12:55:18.708Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4b5",
+    "id": 12,
+    "email": "provider@labourconnect.com",
+    "passwordHash": "$2a$10$TXaNMnSbE5pENUqtyIg3a.j09qoEIlVgCjCKapL4wRdnAZYk6Y6sC",
+    "fullName": "Sunil Master Plumbers",
+    "phoneNumber": "+91-9871122334",
+    "roles": [
+      "ROLE_PROVIDER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.769Z",
+    "updatedAt": "2026-11-21T12:55:18.769Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4bb",
+    "id": 13,
+    "email": "provider2@labourconnect.com",
+    "passwordHash": "$2a$10$9.4OIRwbvDnrFejXrGDCi.FwFc2ieJ6nDL9/uO3ceU8GMr78I5viK",
+    "fullName": "SparkVolt Electrical Solutions",
+    "phoneNumber": "+91-9871122335",
+    "roles": [
+      "ROLE_PROVIDER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.828Z",
+    "updatedAt": "2026-11-21T12:55:18.828Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4c1",
+    "id": 14,
+    "email": "provider3@labourconnect.com",
+    "passwordHash": "$2a$10$qOLfh2b2mzQU7bRG1r3vQOtTBY/y.uqGfacAfAzdfvdc6Q9UBDWDG",
+    "fullName": "MasterCraft Furniture & Carpentry",
+    "phoneNumber": "+91-9871122336",
+    "roles": [
+      "ROLE_PROVIDER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.896Z",
+    "updatedAt": "2026-11-21T12:55:18.896Z",
+    "__v": 0
+  },
+  {
+    "_id": "6b0194b65b5e83309290a4c7",
+    "id": 15,
+    "email": "provider4@labourconnect.com",
+    "passwordHash": "$2a$10$9gH3uyT1TAVOPOJGReI5aOiqob088eXYbJBiEw16RkOmwjiCg8.P2",
+    "fullName": "ColorPro Home Painting & Waterproofing",
+    "phoneNumber": "+91-9871122337",
+    "roles": [
+      "ROLE_PROVIDER"
+    ],
+    "active": true,
+    "suspended": false,
+    "suspensionReason": null,
+    "createdAt": "2026-11-21T12:55:18.953Z",
+    "updatedAt": "2026-11-21T12:55:18.953Z",
+    "__v": 0
+  }
+]
