@@ -1,4 +1,8 @@
 # Labour Connect — Digital Platform for Skilled Employment and On-Demand Local Services
+> **Student:** Prince Bansal | **PRN:** 202401100064 | **Course:** Web Technology (WT)  
+> **Live Web Application:** [https://labour-connect-updated.vercel.app/](https://labour-connect-updated.vercel.app/)  
+> **Live Backend API:** [https://labour-connect-updated.onrender.com/api/v1](https://labour-connect-updated.onrender.com/api/v1)  
+> **GitHub Repository:** [https://github.com/umangramteke/labour-connect-updated](https://github.com/umangramteke/labour-connect-updated)  
 
 Labour Connect is a full-stack web application designed to connect daily-wage and regular skilled workers, employers/shopkeepers, local customers, and verified on-demand service providers within communities.
 

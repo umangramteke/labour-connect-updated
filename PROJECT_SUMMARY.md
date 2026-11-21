@@ -11,6 +11,10 @@
 - **Academic Year:** 2024 – 2026
 - **Architecture:** MERN-Equivalent Modern Full Stack (MongoDB, Express.js, React 18, Node.js)
 - **Previous Architecture (Preserved as Backup):** Java 17 + Spring Boot 3 + Hibernate / JPA + MySQL
+- **Live Frontend URL:** [https://labour-connect-updated.vercel.app/](https://labour-connect-updated.vercel.app/)
+- **Live Backend REST API:** [https://labour-connect-updated.onrender.com/api/v1](https://labour-connect-updated.onrender.com/api/v1)
+- **Cloud Database:** MongoDB Atlas (AWS Mumbai `ap-south-1` Cluster)
+- **GitHub Repository:** [https://github.com/umangramteke/labour-connect-updated](https://github.com/umangramteke/labour-connect-updated)
 - **Submission Date:** November 2026
 
 ---
