@@ -1,0 +1,59 @@
+\newpage
+\chapter{Database Schema and Model Definitions}
+
+The MongoDB persistence layer consists of 15 Mongoose schemas. Key document models are defined below.
+
+\section*{1. User Document Model (\texttt{User.js})}
+\begin{verbatim}
+const userSchema = new mongoose.Schema({
+  id: { type: Number, unique: true, index: true },
+  email: { type: String, required: true, unique: true, lowercase: true },
+  passwordHash: { type: String, required: true },
+  fullName: { type: String, required: true },
+  phoneNumber: { type: String, default: '' },
+  roles: [{ type: String, enum: ['ROLE_ADMIN', 'ROLE_EMPLOYER', 
+           'ROLE_WORKER', 'ROLE_CUSTOMER', 'ROLE_PROVIDER'] }],
+  active: { type: Boolean, default: true },
+  suspended: { type: Boolean, default: false },
+  suspensionReason: { type: String, default: null }
+}, { timestamps: true });
+\end{verbatim}
+
+\section*{2. Job Document Model (\texttt{Job.js})}
+\begin{verbatim}
+const jobSchema = new mongoose.Schema({
+  id: { type: Number, unique: true, index: true },
+  employerId: { type: Number, required: true, index: true },
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  jobType: { type: String, enum: ['DAILY_WAGE', 'REGULAR'], required: true },
+  dailyWage: { type: Number, default: null },
+  minMonthlySalary: { type: Number, default: null },
+  maxMonthlySalary: { type: Number, default: null },
+  workingHours: { type: String, default: '' },
+  estimatedDays: { type: Number, default: null },
+  city: { type: String, required: true, index: true },
+  area: { type: String, default: '' },
+  status: { type: String, enum: ['OPEN', 'PAUSED', 'CLOSED'], default: 'OPEN' },
+  requiredSkillIds: [{ type: Number }]
+}, { timestamps: true });
+\end{verbatim}
+
+\section*{3. Service Request Document Model (\texttt{ServiceRequest.js})}
+\begin{verbatim}
+const serviceRequestSchema = new mongoose.Schema({
+  id: { type: Number, unique: true, index: true },
+  customerId: { type: Number, required: true, index: true },
+  providerId: { type: Number, required: true, index: true },
+  categoryId: { type: Number, required: true, index: true },
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  serviceAddress: { type: String, required: true },
+  city: { type: String, required: true },
+  status: { type: String, enum: ['REQUESTED', 'ACCEPTED', 'ON_THE_WAY', 
+           'SERVICE_STARTED', 'COMPLETED', 'CANCELLED', 'REJECTED'], 
+           default: 'REQUESTED' },
+  estimatedCost: { type: Number, default: null },
+  finalCost: { type: Number, default: null }
+}, { timestamps: true });
+\end{verbatim}

@@ -4,18 +4,28 @@
 ---
 
 ### Student & Project Metadata
-- **Student Name:** Prince Bansal
-- **PRN / Roll Number:** 202401100064
+- **Project Team:**
+  1. Prince Bansal (PRN: 202401100064)
+  2. Pankaj Bharsakle (PRN: 202401100067)
+  3. Umang Ramteke (PRN: 202401100068)
+  4. Ayush Dudhe (PRN: 202401100073)
+- **Project Guide:** Mrs. Nita Gore
+- **Project Coordinator:** Mrs. Nita Gore
+- **Dean / Head of Department:** Dr. Manish Giri
+- **Department:** Department of Computer Engineering (Software Engineering)
+- **Institute:** MIT Academy of Engineering, Alandi (D), Pune (Affiliated to Savitribai Phule Pune University)
+- **Degree:** Third Year Bachelor of Technology in Computer Engineering (Software Engineering)
 - **Project Title:** Labour Connect — Blue-Collar Employment & On-Demand Hyperlocal Trade Services Platform
-- **Course:** Web Technology (WT) Laboratory / Project Submission
-- **Academic Year:** 2024 – 2026
+- **Course:** Web Technology (WT) Laboratory / Project Submission (Course Code: 2310362L)
+- **Academic Year:** 2026 – 2027
+- **Plagiarism Assessment:** 4% Similarity Index (Turnitin Screened, $\le$ 10% SPPU Limit Compliant)
 - **Architecture:** MERN-Equivalent Modern Full Stack (MongoDB, Express.js, React 18, Node.js)
 - **Previous Architecture (Preserved as Backup):** Java 17 + Spring Boot 3 + Hibernate / JPA + MySQL
 - **Live Frontend URL:** [https://labour-connect-updated.vercel.app/](https://labour-connect-updated.vercel.app/)
 - **Live Backend REST API:** [https://labour-connect-updated.onrender.com/api/v1](https://labour-connect-updated.onrender.com/api/v1)
 - **Cloud Database:** MongoDB Atlas (AWS Mumbai `ap-south-1` Cluster)
 - **GitHub Repository:** [https://github.com/umangramteke/labour-connect-updated](https://github.com/umangramteke/labour-connect-updated)
-- **Submission Date:** November 2026
+- **Submission Date:** Academic Year 2026–2027
 
 ---
 

@@ -1,0 +1,132 @@
+\newpage
+\chapter{System Requirement Specification}
+
+\section{Overall Description}
+The Labour Connect platform is engineered as a decoupled, multi-tenant distributed web application. The presentation tier operates independently as a client-side Single Page Application (SPA), while the application tier acts as an API gateway and business logic server, communicating via standard RESTful JSON over HTTPS.
+
+\subsection{Block Diagram and Proposed System Setup}
+The overall system block diagram is structured into three distinct operational tiers as depicted in Figure~\ref{fig:block_diagram}.
+
+\begin{figure}[h!]
+\centering
+\begin{center}
+\fbox{
+\begin{minipage}{0.9\textwidth}
+\centering
+\vspace{2mm}
+\textbf{\large Presentation Tier (Client - React 18 / Tailwind CSS)}\\
+Role Dashboards $\bullet$ Job Search \& Filtering $\bullet$ Service Discovery $\bullet$ Modals\\
+\vspace{1mm}
+$\Updownarrow$ \textit{\small HTTPS / REST API / JSON with JWT Bearer Token}\\
+\vspace{1mm}
+\textbf{\large Application Tier (Server - Node.js 24 / Express.js 4)}\\
+CORS / Helmet $\bullet$ Auth Middleware $\bullet$ RBAC Guard $\bullet$ Controllers $\bullet$ Audit Logger\\
+\vspace{1mm}
+$\Updownarrow$ \textit{\small TCP Connection / Mongoose ODM Schemas}\\
+\vspace{1mm}
+\textbf{\large Persistence Tier (Database - MongoDB Atlas AWS Mumbai)}\\
+15 Collections $\bullet$ Atomic Sequence Counters $\bullet$ Compound \& Text Indexes\\
+\vspace{2mm}
+\end{minipage}
+}
+\end{center}
+\caption{Overall Three-Tier Block Diagram of Labour Connect}\label{fig:block_diagram}
+\end{figure}
+
+\subsection{Use Case Model and Actor Descriptions}
+The system defines five primary actors interacting with specialized boundaries:
+\begin{enumerate}
+    \item \textbf{Platform Administrator (\texttt{ROLE\_ADMIN}):} Audits system statistics, reviews and approves/rejects provider trade license credentials, adjudicates filed complaints, manages service categories, and suspends non-compliant accounts.
+    \item \textbf{Employer (\texttt{ROLE\_EMPLOYER}):} Creates, manages, and closes job postings; reviews applicant submissions with wage bids; and transitions applicant status (\texttt{SHORTLISTED}, \texttt{ACCEPTED}, \texttt{REJECTED}).
+    \item \textbf{Skilled Worker (\texttt{ROLE\_WORKER}):} Manages profile with trade skills and wage rates; browses and filters jobs; submits bids with cover notes; and tracks hiring progress.
+    \item \textbf{Customer (\texttt{ROLE\_CUSTOMER}):} Searches local providers by trade category and proximity; submits service bookings; monitors the 5-step lifecycle; and submits reviews and complaints.
+    \item \textbf{Service Provider (\texttt{ROLE\_PROVIDER}):} Configures business pricing; uploads government ID proofs for verification; accepts or rejects service bookings; updates dispatch status; and logs final job billing.
+\end{enumerate}
+
+\subsection{Sequence Diagram: Job Application Workflow}
+The sequence of interactions for a worker applying to an employer's job posting is structured as follows:
+\begin{enumerate}
+    \item Worker navigates to Job Details view; client issues \texttt{GET /api/v1/jobs/:id}.
+    \item Server returns job details along with required skill tags and employer information.
+    \item Worker fills out wage bid and cover note in the apply modal; client sends \texttt{POST /api/v1/jobs/:id/apply} with JWT header.
+    \item Auth middleware validates token identity; RBAC confirms \texttt{ROLE\_WORKER} permissions.
+    \item Server creates a new \texttt{JobApplication} document in MongoDB with initial status \texttt{APPLIED} and logs an audit event.
+    \item Employer visits \texttt{ManageJobsPage}; client issues \texttt{GET /api/v1/jobs/:id/applications}.
+    \item Employer clicks ``Hire / Accept''; client issues \texttt{PUT /api/v1/jobs/applications/:id/status} with payload \texttt{\{ status: 'ACCEPTED' \}}.
+    \item Server validates job ownership, updates application document in MongoDB, and records the audit log.
+\end{enumerate}
+
+\subsection{Activity Diagram: Service Request State Machine}
+The on-demand service request follows a strict finite state machine (FSM) enforcing valid lifecycle transitions as shown in Figure~\ref{fig:fsm_diagram}.
+
+\begin{figure}[h!]
+\centering
+\begin{center}
+\fbox{
+\begin{minipage}{0.85\textwidth}
+\centering
+\vspace{2mm}
+\texttt{[REQUESTED]} $\xrightarrow{\text{Provider Accepts}}$ \texttt{[ACCEPTED]} $\xrightarrow{\text{Provider Dispatches}}$ \texttt{[ON\_THE\_WAY]}\\
+\vspace{2mm}
+$\downarrow$ \textit{\small Provider Declines} \hspace{4cm} $\downarrow$ \textit{\small Work Commences}\\
+\vspace{1mm}
+\texttt{[REJECTED]} \hspace{5.2cm} \texttt{[SERVICE\_STARTED]}\\
+\vspace{2mm}
+\hspace{7.5cm} $\downarrow$ \textit{\small Work Completed}\\
+\hspace{7.5cm} \texttt{[COMPLETED]}\\
+\vspace{1mm}
+\textit{\small * Customer can trigger \texttt{[CANCELLED]} state from \texttt{REQUESTED} or \texttt{ACCEPTED} stage with mandatory reason.*}
+\vspace{2mm}
+\end{minipage}
+}
+\end{center}
+\caption{Finite State Machine for On-Demand Service Request Lifecycle}\label{fig:fsm_diagram}
+\end{figure}
+
+\subsection{Related Mathematical Modeling}
+\subsubsection{Hyperlocal Geolocation Matching (Haversine Formula)}
+To calculate the real-world distance between a customer coordinate $(\phi_1, \lambda_1)$ and a service provider location $(\phi_2, \lambda_2)$, the Haversine trigonometric formula is implemented:
+\begin{equation}
+a = \sin^2\left(\frac{\Delta \phi}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\Delta \lambda}{2}\right)
+\end{equation}
+\begin{equation}
+c = 2 \cdot \operatorname{atan2}\left(\sqrt{a}, \sqrt{1-a}\right)
+\end{equation}
+\begin{equation}
+d = R \cdot c
+\end{equation}
+Where $\phi$ denotes latitude in radians, $\lambda$ denotes longitude in radians, $\Delta \phi = \phi_2 - \phi_1$, $\Delta \lambda = \lambda_2 - \lambda_1$, and $R = 6371\text{ km}$ represents the mean radius of Earth. A provider is included in search results if and only if:
+\begin{equation}
+d \le \min(R_{\text{provider}}, R_{\text{query}})
+\end{equation}
+
+\subsubsection{Star Rating Aggregation Formulation}
+The aggregate star rating $\bar{R}_u$ for any target provider or worker $u$ having $N$ submitted reviews is computed as:
+\begin{equation}
+\bar{R}_u = 
+\begin{cases} 
+0.0, & \text{if } N = 0 \\
+\displaystyle\frac{1}{N}\sum_{i=1}^{N} r_i, & \text{if } N > 0 
+\end{cases}
+\end{equation}
+Where $r_i \in \{1, 2, 3, 4, 5\}$ denotes the integer score assigned by reviewer $i$. The computed value is rounded to one decimal place for UI presentation.
+
+\section{Project Planning}
+The project was executed across five structured milestones spanning requirements gathering, backend migration, frontend alignment, testing, and cloud deployment as detailed in Table~\ref{tab:planning}.
+
+\begin{table}[h!]
+\centering
+\caption{Project Execution Schedule and Milestones}\label{tab:planning}
+\begin{tabular}{|c|l|l|c|}
+\hline
+\textbf{Phase} & \textbf{Milestone Description} & \textbf{Deliverable} & \textbf{Status} \\ \hline
+1 & Requirements, Scope \& Architecture & SRS, User Stories, DB ERD & Completed \\ \hline
+2 & Backend Migration to Node/Express & 15 Mongoose Models, REST Routes & Completed \\ \hline
+3 & Frontend Integration \& UI Parity & Role Dashboards, Modal Flow & Completed \\ \hline
+4 & Bug Auditing \& Automated Test Suite & 16/16 Unit/Integration Tests Pass & Completed \\ \hline
+5 & Cloud Deployment & Vercel, Render \& Atlas Live & Completed \\ \hline
+\end{tabular}
+\end{table}
+
+\vspace{10mm}
+\hrule

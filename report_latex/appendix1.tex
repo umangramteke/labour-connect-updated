@@ -1,0 +1,53 @@
+\newpage
+\chapter{RESTful API Endpoint Catalog}
+
+The Labour Connect server exposes 48 RESTful endpoints mapped under the base route \texttt{/api/v1/*}. Table~\ref{tab:api_catalog} outlines the core endpoint specifications.
+
+\begin{table}[h!]
+\centering
+\caption{Core RESTful API Endpoint Catalog}\label{tab:api_catalog}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{HTTP Method} & \textbf{Endpoint Path} & \textbf{Authorized Roles} & \textbf{Description} \\ \hline
+\texttt{GET} & \texttt{/api/v1/health} & Public & Server and MongoDB status check \\ \hline
+\texttt{POST} & \texttt{/api/v1/auth/register} & Public & Register new user (4 public roles) \\ \hline
+\texttt{POST} & \texttt{/api/v1/auth/login} & Public & Login and receive JWT Bearer token \\ \hline
+\texttt{GET} & \texttt{/api/v1/categories} & Public & List active service categories \\ \hline
+\texttt{GET} & \texttt{/api/v1/skills} & Public & List 14 master skills \\ \hline
+\texttt{GET} & \texttt{/api/v1/jobs} & Public & Filter jobs (type, city, status, salary) \\ \hline
+\texttt{POST} & \texttt{/api/v1/jobs} & Employer & Publish new job vacancy \\ \hline
+\texttt{POST} & \texttt{/api/v1/jobs/:id/apply} & Worker & Submit job application with bid \\ \hline
+\texttt{PUT} & \texttt{/api/v1/jobs/applications/:id/status} & Employer & Shortlist, accept, or reject applicant \\ \hline
+\texttt{DELETE} & \texttt{/api/v1/jobs/:id} & Employer & Close job posting \\ \hline
+\texttt{GET} & \texttt{/api/v1/services/providers} & Public & Search nearby verified providers \\ \hline
+\texttt{POST} & \texttt{/api/v1/requests} & Customer & Create on-demand booking request \\ \hline
+\texttt{PUT} & \texttt{/api/v1/requests/:id/status} & Provider & Update 5-step service progress \\ \hline
+\texttt{POST} & \texttt{/api/v1/requests/:id/cancel} & Customer & Cancel service request with reason \\ \hline
+\texttt{POST} & \texttt{/api/v1/reviews} & Authenticated & Submit star rating and review \\ \hline
+\texttt{POST} & \texttt{/api/v1/complaints} & Authenticated & File formal dispute ticket \\ \hline
+\texttt{GET} & \texttt{/api/v1/admin/stats} & Admin & Retrieve system metrics overview \\ \hline
+\texttt{PUT} & \texttt{/api/v1/admin/users/:id/status} & Admin & Suspend or reactivate user \\ \hline
+\texttt{PUT} & \texttt{/api/v1/admin/complaints/:id} & Admin & Record administrative resolution \\ \hline
+\end{tabular}
+\end{table}
+
+\section*{Sample JSON Payloads}
+\subsection*{1. Authentication Login Response (\texttt{POST /api/v1/auth/login})}
+\begin{verbatim}
+{
+  "success": true,
+  "message": "Login successful.",
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "tokenType": "Bearer",
+    "user": {
+      "id": 1,
+      "email": "admin@labourconnect.com",
+      "fullName": "Platform Administrator",
+      "roles": ["ROLE_ADMIN"],
+      "active": true,
+      "suspended": false
+    }
+  }
+}
+\end{verbatim}

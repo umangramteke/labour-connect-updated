@@ -1,0 +1,50 @@
+\newpage
+\chapter{Literature Review}
+
+\section{Related Work and State of the Art}
+The intersection of digital labor platforms and mobile technology has witnessed significant industrial growth and academic research over the past decade. Broadly, existing platforms can be categorized into three distinct paradigms:
+
+\subsection{White-Collar and Corporate Recruitment Platforms}
+Platforms such as LinkedIn, Naukri, and Indeed cater primarily to organized, white-collar knowledge workers. These platforms rely heavily on detailed resume parsing, text-heavy profile descriptions, academic degrees, and formal credentialing. While highly effective in corporate domains, these systems completely fail in blue-collar and unorganized trade labor where workers possess practical, non-academic skills and require immediate daily or weekly wage settlements rather than extended interview cycles.
+
+\subsection{Commercial Service Aggregators and Gig Giants}
+Commercial aggregators like Urban Company (in India) and TaskRabbit / Handy (in North America and Europe) aggregate home service technicians. These platforms operate on an algorithmic dispatch model where customers book a standardized service package, and the platform algorithm assigns an affiliated contractor. While customer convenience is high, these platforms impose strict pricing controls, claim hefty commission fees (20\% to 30\% per booking), and enforce punitive cancellation penalties on service providers. Independent contractors lose their business identity, cannot set customized pricing, and remain dependent on proprietary algorithms.
+
+\subsection{Emerging Blue-Collar Platforms}
+Recent Indian initiatives such as Apna, WorkIndia, and JobHai have targeted semi-skilled blue-collar employment (tele-callers, delivery riders, retail sales associates). These platforms demonstrate the feasibility of mobile-first recruitment for lower-income groups. However, their scope remains restricted to structured corporate blue-collar positions (e.g., warehouse staff for logistics companies) and entirely excludes the massive daily-wage construction and unorganized trade market (masons, carpenters, plumbers). Furthermore, none of these platforms offer integrated on-demand home service booking capabilities.
+
+\begin{table}[h!]
+\centering
+\caption{Comparative Analysis of Existing Systems vs. Labour Connect}\label{tab:lit_comparison}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Features / Capabilities} & \textbf{Apna / WorkIndia} & \textbf{Urban Company} & \textbf{TaskRabbit} & \textbf{Labour Connect} \\ \hline
+Daily-Wage Job Listings & Limited & No & Yes & \textbf{Yes (Comprehensive)} \\ \hline
+Regular Full-Time Listings & Yes & No & No & \textbf{Yes} \\ \hline
+Direct Wage Bidding by Workers & No & No & Yes & \textbf{Yes} \\ \hline
+On-Demand Local Service Booking & No & Yes & Yes & \textbf{Yes} \\ \hline
+Independent Provider Pricing & No & No (Fixed) & Yes & \textbf{Yes (Base + Hourly)} \\ \hline
+Admin License Verification Badge & Basic & Internal & Basic & \textbf{Formal ID/Trade Audit} \\ \hline
+Formal Dispute Arbitration & No & Closed Support & Support & \textbf{Dedicated Admin Portal} \\ \hline
+Zero Commission / Open Direct Connect & Yes & No (25\% Cut) & No (Fee) & \textbf{Yes (Direct Connect)} \\ \hline
+Architecture & Proprietary & Proprietary & Microservices & \textbf{Open MERN Stack} \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Limitations of State of the Art Techniques}
+A systematic analysis of existing industrial and academic implementations reveals four fundamental shortcomings:
+\begin{enumerate}
+    \item \textbf{Vertical Siloing:} Existing solutions force a rigid dichotomy: platforms either handle job recruitment (Apna) or handle on-demand home services (Urban Company). A tradesperson (such as an electrician) who performs both contract construction jobs and household emergency repairs is forced to juggle multiple incompatible platforms.
+    \item \textbf{High Intermediation Costs:} Commercial service platforms extract significant margins from worker earnings. This drives up costs for consumers while leaving workers vulnerable to algorithmic wage suppression.
+    \item \textbf{Lack of Formal Dispute Redressal:} Most blue-collar job apps provide zero mediation once an application is accepted. If an employer withholds wages or a customer refuses payment, workers have no platform-level dispute filing mechanism.
+    \item \textbf{Opaque Verification Badging:} In informal platforms, claims of experience and certification are unvetted, leading to frequent safety and quality hazards for household customers.
+\end{enumerate}
+
+\section{Discussion and Future Direction}
+The reviewed literature and market benchmarks highlight the urgent necessity for a decentralized, transparent, and multi-tenant web application. By employing the \textbf{MERN stack}, the proposed Labour Connect system combines low latency, open direct communication between parties, fine-grained Role-Based Access Control, and comprehensive administrative oversight to deliver a balanced and equitable ecosystem.
+
+\section{Concluding Remarks}
+In summary, while specialized platforms address individual segments of digital labor, an integrated platform offering both daily-wage employment and hyperlocal trade bookings with formal verification and dispute resolution remains an unfulfilled need. Labour Connect directly bridges this gap.
+
+\vspace{10mm}
+\hrule

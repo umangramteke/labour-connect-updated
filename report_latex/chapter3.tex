@@ -1,0 +1,67 @@
+\newpage
+\chapter{Problem Definition and Scope}
+
+\section{Problem Statement}
+To design, engineer, and deploy a secure, responsive, full-stack web platform using the \textbf{MERN stack} (MongoDB Atlas, Express.js, React.js, and Node.js) that establishes a transparent, bidirectional ecosystem for blue-collar daily-wage/regular employment and hyperlocal on-demand trade services. The system must eliminate informal intermediary exploitation, support wage transparency and candidate bidding, provide real-time service lifecycle tracking, enforce Role-Based Access Control (RBAC) across five user categories, and incorporate administrative governance for trade verification and dispute resolution.
+
+\section{Goals and Objectives}
+\subsection{Primary Project Goals}
+\begin{enumerate}
+    \item Establish a centralized digital marketplace where employers can publish employment vacancies with explicit daily or monthly wage scales, and workers can apply with customized wage bids and experience notes.
+    \item Provide household customers with an on-demand directory to discover nearby, certified trade contractors (plumbers, electricians, masons, carpenters) with transparent pricing and distance calculation.
+    \item Implement a robust five-stage finite state machine for service requests ensuring end-to-end accountability from booking to final billing and customer review.
+    \item Engineer a secure, stateless authentication and authorization architecture enforcing strict access boundaries across five user roles.
+\end{enumerate}
+
+\subsection{Measurable Technical Objectives}
+\begin{itemize}
+    \item Construct a high-performance Single Page Application (SPA) using React 18 and Vite with zero build defects and responsive Tailwind CSS layouts.
+    \item Construct a modular, asynchronous RESTful API backend using Node.js and Express.js supporting 48 discrete endpoints under \texttt{/api/v1/*}.
+    \item Implement a scalable NoSQL persistence layer in MongoDB Atlas using 15 Mongoose schemas with atomic sequence counters for numeric key generation.
+    \item Achieve 100\% pass rate across comprehensive automated integration test suites validating state transitions, security, and edge-case behavior.
+    \item Deploy the multi-tier production architecture live to global cloud providers (Vercel Edge CDN for frontend, Render Cloud for backend, and MongoDB Atlas for database).
+\end{itemize}
+
+\section{Scope and Major Constraints}
+\subsection{System Scope}
+\begin{itemize}
+    \item \textbf{Functional Scope:} User registration and JWT authentication; multi-role dashboard routing; job posting, search, filtering, and application bidding; on-demand service discovery, booking, status updating, and final invoicing; 1-to-5 star bidirectional reviews; formal complaint filing; and administrator analytics, verification, and audit logging.
+    \item \textbf{Target Users:} Unskilled and skilled blue-collar workers; micro, small, and medium business employers; urban household customers; certified trade service providers; and platform compliance administrators.
+\end{itemize}
+
+\subsection{Major Constraints}
+\begin{itemize}
+    \item \textbf{Offline Payment Settlement:} Due to regulatory licensing and banking sandbox constraints, final invoice amounts and worker wages are settled offline directly between contracting parties; the platform records and tracks agreed amounts without acting as a licensed escrow entity.
+    \item \textbf{Static Geolocation Matching:} In the current phase, geographic proximity is computed using static latitude and longitude coordinates stored in user profiles via the Haversine formula, rather than continuous real-time GPS telemetry.
+    \item \textbf{Device and Network Constraints:} The client interface is optimized to operate smoothly across low-end mobile devices and constrained mobile network bandwidths prevalent among blue-collar workers.
+\end{itemize}
+
+\section{Hardware and Software Requirements}
+\subsection{Development \& Server Hardware Requirements}
+\begin{itemize}
+    \item \textbf{Processor:} Multi-core 64-bit x86/ARM CPU (Intel Core i5 / AMD Ryzen 5 or cloud vCPU).
+    \item \textbf{Primary Memory (RAM):} Minimum 8 GB RAM (Development); 512 MB to 1 GB RAM (Production Cloud Instances).
+    \item \textbf{Secondary Storage:} Minimum 2 GB free disk space for Node dependencies and local data.
+\end{itemize}
+
+\subsection{Software Requirements}
+\begin{itemize}
+    \item \textbf{Operating System:} Cross-platform (Windows 11, Linux Ubuntu 22.04 LTS, macOS).
+    \item \textbf{Client Runtime:} Modern ECMAScript-compliant web browsers (Google Chrome 110+, Mozilla Firefox 110+, Safari 16+, Microsoft Edge).
+    \item \textbf{Server Runtime Environment:} Node.js v18.x, v20.x, or v24.x (Active LTS) with npm 10+.
+    \item \textbf{Frameworks \& Libraries:} Express.js 4.19, React 18.3, Vite 5.4, Tailwind CSS 3.4, Axios 1.7, Mongoose 8.2, Bcrypt.js 2.4, JSON Web Token (jsonwebtoken) 9.0, Helmet 7.1.
+    \item \textbf{Database Management System:} MongoDB Community Edition v8.0 (Local Development) / MongoDB Atlas M0 Cloud Cluster (Production).
+    \item \textbf{Cloud Infrastructure:} Render Web Services (Backend hosting), Vercel Global Edge Network (Frontend CDN), GitHub (Version Control \& CI/CD).
+\end{itemize}
+
+\section{Expected Outcomes}
+Upon deployment, the system is expected to deliver:
+\begin{enumerate}
+    \item Significant reduction in worker hiring turnaround time from days to minutes.
+    \item Complete transparency in daily-wage rates and service contractor pricing.
+    \item Higher customer satisfaction via verified trade contractor badging and reliable reviews.
+    \item A fully documented and tested academic web technology deliverable satisfying all university syllabus outcomes.
+\end{enumerate}
+
+\vspace{10mm}
+\hrule

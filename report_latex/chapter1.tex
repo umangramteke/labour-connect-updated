@@ -1,0 +1,49 @@
+\newpage
+\chapter{Introduction}
+
+\section{Background}
+The informal economy constitutes over 80\% of total employment across emerging markets, with the Indian blue-collar and unorganized workforce exceeding 450 million individuals. This segment encompasses daily-wage manual laborers (masons, construction workers, painters, tile layers) and self-employed skilled trade service providers (plumbers, electricians, carpenters, appliance technicians). Despite rapid digital transformation in white-collar recruitment and retail e-commerce, the informal labor ecosystem continues to operate predominantly through physical labor aggregations (commonly termed \textit{labor chowks} or \textit{nakas}) and informal word-of-mouth intermediaries.
+
+In these traditional mechanisms, workers face extreme wage volatility, non-payment risks, lack of geographic mobility, and complete absence of verified professional credentialing. Concurrently, micro-enterprises, construction contractors, shopkeepers, and urban household residents struggle with acute information asymmetry: they lack credible channels to verify artisan qualifications, assess market-rate wages, track work fulfillment, or mediate disputes.
+
+Modern web technologies have matured to offer full-stack, distributed, and scalable architectures capable of organizing unstructured markets. By leveraging single-page application (SPA) frameworks on the client tier and event-driven asynchronous micro-frameworks on the server tier, it is feasible to deliver lightweight, highly responsive, and accessible digital platforms tailored to blue-collar operations.
+
+\section{Motivation}
+The primary motivation behind this work stems from the stark inequality in digital infrastructure accessible to informal workers. Conventional white-collar recruitment platforms (such as LinkedIn, Naukri, or Indeed) emphasize formal curricula vitae, corporate skill taxonomies, and English-centric workflows, rendering them fundamentally unsuited for blue-collar daily-wage labor. On the other hand, commercial on-demand service aggregators (such as Urban Company) function as closed contractor networks with high commission markups (ranging between 20\% to 30\%), strict operational quotas, and high barrier-to-entry certifications that exclude independent local tradespeople.
+
+Furthermore, within the academic framework of the \textbf{Web Technology (2310362L)} curriculum, this project serves as an end-to-end realization of modern full-stack web engineering:
+\begin{enumerate}[label=(\alph*)]
+    \item Designing responsive client-side user interfaces utilizing \textbf{ReactJS} and \textbf{Tailwind CSS} (satisfying Course Outcome CO1 and CO2).
+    \item Engineering an asynchronous, high-concurrency server runtime with \textbf{NodeJS} and \textbf{ExpressJS} (satisfying Course Outcome CO3).
+    \item Structuring a flexible, document-oriented NoSQL persistence tier using \textbf{MongoDB Atlas} and Mongoose Object Data Modeling (satisfying Course Outcome CO4 and Practical 7).
+    \item Deploying a production-grade multi-tier architecture across global cloud edge infrastructure (Vercel and Render).
+\end{enumerate}
+
+\section{Project Idea}
+The core concept of \textbf{Labour Connect} is to establish a unified, open, transparent, and bidirectional digital ecosystem addressing both employment and hyperlocal services on a single responsive platform:
+\begin{enumerate}
+    \item \textbf{Employment Connect Vertical:} Facilitates formal job postings by verified employers for both regular monthly employment and flexible daily-wage assignments. Workers browse jobs with explicit wage transparency, apply with customized wage bids and experience notes, and track application progression in real time.
+    \item \textbf{On-Demand Service Connect Vertical:} Empowers local household and commercial customers to search, evaluate, and book certified trade specialists based on distance, trade category, customer star ratings, and base rates.
+    \item \textbf{Administrative Trust \& Governance Engine:} Implements platform-level compliance auditing, trade license and government ID validation, provider verification badges, and formal dispute resolution mediation.
+\end{enumerate}
+
+\section{Proposed Solution}
+To solve the identified socio-technical bottlenecks, the proposed system establishes a three-tier client-server architecture:
+\begin{itemize}
+    \item \textbf{Client Tier (React 18 + Vite):} Delivers five tailored role dashboards with reactive state updates, intuitive filter controls (salary sliders, skill badges, verification status), and responsive layouts conforming to modern web standards.
+    \item \textbf{RESTful API Tier (Node.js + Express.js):} Implements 48 RESTful endpoints adhering to strict HTTP semantics, stateless JSON Web Token (JWT) Bearer authentication, and Role-Based Access Control (RBAC) middleware verifying user authorizations.
+    \item \textbf{Persistence Tier (MongoDB Atlas):} Houses 15 normalized NoSQL collections with schema constraints, utilizing atomic auto-increment sequence counters to maintain numerical identifier integrity, paired with the Haversine trigonometric formula for proximity matching.
+\end{itemize}
+
+\section{Project Report Organization}
+The remainder of this report is organized as follows:
+\begin{itemize}
+    \item \textbf{Chapter 2 (Literature Review):} Critically reviews existing industrial platforms and state-of-the-art academic frameworks, highlighting limitations in existing solutions.
+    \item \textbf{Chapter 3 (Problem Definition and Scope):} Formally articulates the problem statement, primary goals, operational scope, major constraints, and hardware/software specifications.
+    \item \textbf{Chapter 4 (System Requirement Specification):} Details functional requirements, UML modeling (use cases, sequence, activity diagrams), mathematical geolocation formulations, and project planning.
+    \item \textbf{Chapter 5 (Proposed Methodology):} Outlines the detailed technical methodology, architectural block diagrams, security protocols, and Mongoose database design.
+    \item \textbf{Chapter 6 (Conclusion and Future Scope):} Summarizes the project outcomes, discusses live deployment verification, and outlines future technical enhancements.
+\end{itemize}
+
+\vspace{10mm}
+\hrule

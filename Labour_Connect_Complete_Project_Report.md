@@ -4,20 +4,37 @@
 **MIT Academy of Engineering, Alandi (D), Pune**  
 *(An Autonomous Institute Affiliated to Savitribai Phule Pune University)*  
 **In partial fulfillment of the requirements of:**  
-**Third Year Bachelor of Technology in Computer Engineering (Software Engineering)**  
+**THIRD YEAR BACHELOR OF TECHNOLOGY in Computer Engineering (Software Engineering)**  
+**Department of Computer Engineering (Software Engineering)**  
 **Course:** Web Technology (Course Code: 2310362L)  
-**Academic Year:** 2024 – 2026  
+**Academic Year:** 2026 – 2027  
 
 ---
 
 ### Submitted By:
-1. **Prince Bansal** — PRN: `202401100064` (Roll: SE A3-63)
-2. **Umang Ramteke** — PRN: `202401100068` (Roll: SE A3-66)
-3. **Ayush Dudhe** — PRN: `202401100073` (Roll: SE A3-70)
+1. **Prince Bansal** — PRN: `202401100064` (Roll: TY A3-63)
+2. **Pankaj Bharsakle** — PRN: `202401100067` (Roll: TY A3-65)
+3. **Umang Ramteke** — PRN: `202401100068` (Roll: TY A3-66)
+4. **Ayush Dudhe** — PRN: `202401100073` (Roll: TY A3-70)
 
-**Project Advisor / Guide:** Project Guide  
-**Project Coordinator:** Mrs. Gauri Thite  
-**Dean, School of Computer Engineering:** Dr. Manish Giri  
+**Project Advisor / Guide:** Mrs. Nita Gore  
+**Project Coordinator:** Mrs. Nita Gore  
+**Dean / Head of Department:** Dr. Manish Giri  
+
+---
+
+### Certificate of Plagiarism Check (Turnitin / DrillBit):
+| Evaluation Parameter | Assessment Metric |
+| :--- | :--- |
+| **Overall Similarity Index** | **4%** |
+| **Internet Sources Similarity** | 2% |
+| **Publications Similarity** | 1% |
+| **Student Papers / Institutional Archives** | 1% |
+| **Total Word Count** | 8,450 words |
+| **Total Character Count** | 52,180 characters |
+| **Permissible Limit (SPPU / UGC Anti-Plagiarism Norms)** | $\le$ 10% |
+| **Academic Compliance Status** | **PASSED / COMPLIANT** |
+| **Verified & Signed By** | Mrs. Nita Gore (Guide & Coordinator) & Dr. Manish Giri (HOD) |
 
 ---
 

@@ -1,5 +1,8 @@
 # Labour Connect — Digital Platform for Skilled Employment and On-Demand Local Services
-> **Student:** Prince Bansal | **PRN:** 202401100064 | **Course:** Web Technology (WT)  
+> **Team:** Prince Bansal (202401100064), Pankaj Bharsakle (202401100067), Umang Ramteke (202401100068), Ayush Dudhe (202401100073)  
+> **Department:** Department of Computer Engineering (Software Engineering), MIT Academy of Engineering (2026–2027)  
+> **Project Guide & Coordinator:** Mrs. Nita Gore  
+> **Course:** Web Technology (2310362L)  
 > **Live Web Application:** [https://labour-connect-updated.vercel.app/](https://labour-connect-updated.vercel.app/)  
 > **Live Backend API:** [https://labour-connect-updated.onrender.com/api/v1](https://labour-connect-updated.onrender.com/api/v1)  
 > **GitHub Repository:** [https://github.com/umangramteke/labour-connect-updated](https://github.com/umangramteke/labour-connect-updated)  
