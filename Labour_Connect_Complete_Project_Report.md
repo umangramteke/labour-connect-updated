@@ -23,21 +23,6 @@
 
 ---
 
-### Certificate of Plagiarism Check (Turnitin / DrillBit):
-| Evaluation Parameter | Assessment Metric |
-| :--- | :--- |
-| **Overall Similarity Index** | **4%** |
-| **Internet Sources Similarity** | 2% |
-| **Publications Similarity** | 1% |
-| **Student Papers / Institutional Archives** | 1% |
-| **Total Word Count** | 8,450 words |
-| **Total Character Count** | 52,180 characters |
-| **Permissible Limit (SPPU / UGC Anti-Plagiarism Norms)** | $\le$ 10% |
-| **Academic Compliance Status** | **PASSED / COMPLIANT** |
-| **Verified & Signed By** | Mrs. Nita Gore (Guide & Coordinator) & Dr. Manish Giri (HOD) |
-
----
-
 ### Official Live Production Links:
 - **Production Web Application:** [https://labour-connect-updated.vercel.app/](https://labour-connect-updated.vercel.app/)
 - **Production REST API:** [https://labour-connect-updated.onrender.com/api/v1](https://labour-connect-updated.onrender.com/api/v1)
@@ -217,6 +202,42 @@ Labour Connect has been successfully implemented and deployed live in production
 - **Live GPS Telemetry:** Real-time WebSocket technician tracking on interactive maps.
 - **Multilingual Support:** Localization in Hindi and Marathi with voice navigation.
 - **Mobile Client:** Native mobile companion app using React Native.
+
+---
+
+## Chapter 7: System User Interface and Live Website Screenshots
+
+The user interface of Labour Connect is designed with a modern, responsive layout prioritizing accessibility for daily-wage workers, employers, customers, and trade technicians. The system is deployed and accessible live at [https://labour-connect-updated.vercel.app/](https://labour-connect-updated.vercel.app/).
+
+### 7.1 Landing and Discovery Interface
+The landing page presents the platform's dual operational portals: the skilled employment marketplace and on-demand hyperlocal trade bookings.
+
+![Labour Connect Landing Page](report_latex/screenshot_landing.png)
+*Figure 7.1: Labour Connect Landing Interface featuring Dual Operational Portals*
+
+### 7.2 Skilled Employment Marketplace
+The job search and candidate matching portal allows workers to browse and filter open vacancies by trade skills, employment type (daily-wage or monthly), and wage threshold.
+
+![Labour Connect Jobs Marketplace](report_latex/screenshot_jobs.png)
+*Figure 7.2: Skilled Employment Marketplace with Wage Transparency and Dynamic Filtering*
+
+### 7.3 On-Demand Hyperlocal Services Directory
+The hyperlocal trade directory connects residential and commercial customers with verified technicians (electricians, plumbers, carpenters, masons) filtered by proximity.
+
+![Labour Connect Services Directory](report_latex/screenshot_services.png)
+*Figure 7.3: On-Demand Hyperlocal Service Directory and Verified Provider Catalog*
+
+### 7.4 Centralized Authentication and Role Portal
+The security portal implements stateless JWT sessions and role-based access control (Admin, Employer, Worker, Customer, Provider).
+
+![Labour Connect Authentication Portal](report_latex/screenshot_login.png)
+*Figure 7.4: Authentication Portal with Role-Based Security Governance*
+
+### 7.5 Production Cloud Deployment on Vercel
+The frontend client tier is deployed on Vercel Global Edge Network with automatic continuous deployment linked to the GitHub repository.
+
+![Labour Connect Production Deployment](report_latex/screenshot_deployment.jpg)
+*Figure 7.5: Production Cloud Deployment on Vercel Global Edge CDN*
 
 ---
 

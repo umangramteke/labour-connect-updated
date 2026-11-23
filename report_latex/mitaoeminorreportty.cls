@@ -168,33 +168,41 @@ Academic Year \textbf{\@academicyear} Semester \textbf{V}, under the supervision
 
 \clearpage
 \newcommand{\declaration}{%
-\vspace*{-10mm}
+\vspace*{-12mm}
 
 \begin{center}
-{\LARGE{\textbf{\underline{DECLARATION}}}} \\ [8mm]
+{\LARGE{\textbf{\underline{DECLARATION}}}} \\ [6mm]
 \end{center}
 
-\renewcommand{\baselinestretch}{1.4}
-{\large{We the undersigned solemnly declare that the project report is based on our own work carried out during the course of our study under the supervision of \textbf{\@projectadvisor}.\\[2mm]
-We assert the statements made and conclusions drawn are an outcome of our project work. We further certify that}}
-\begin{enumerate}
-  \item {\large The work contained in the report is original and has been done by us under the general supervision of our supervisor.}
-  \item {\large The work has not been submitted to any other Institution for any other degree/diploma/certificate in this Institute/University or any other Institute/University
-of India or abroad.}
-  \item {\large We have followed the guidelines provided by the Institute in writing the report.}
-  \item {\large Whenever we have used materials (data, theoretical analysis, and text) from other sources, we have given due credit to them in the text of the report and giving their
-details in the references.}
+\renewcommand{\baselinestretch}{1.3}
+\noindent
+We the undersigned solemnly declare that the project report is based on our own work carried out during the course of our study under the supervision of \textbf{\@projectadvisor}.\\[2mm]
+We assert the statements made and conclusions drawn are an outcome of our project work. We further certify that:
+\begin{enumerate}[noitemsep,topsep=3pt]
+  \item The work contained in the report is original and has been done by us under the general supervision of our supervisor.
+  \item The work has not been submitted to any other Institution for any other degree/diploma/certificate in this Institute/University or any other Institute/University of India or abroad.
+  \item We have followed the guidelines provided by the Institute in writing the report.
+  \item Whenever we have used materials (data, theoretical analysis, and text) from other sources, we have given due credit to them in the text of the report and giving their details in the references.
 \end{enumerate}
-\vspace{6mm}
 
-\begin{center}
-\begin{tabular}{@{}p{6.0cm}l@{}l@{}}
+\vspace{10mm}
+\noindent
+\begin{minipage}[t]{0.35\textwidth}
+\vspace{0pt}
+\textbf{Date:} \\[3mm]
+\textbf{Place:} Alandi (D), Pune
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.62\textwidth}
+\vspace{0pt}
+\begin{flushright}
+\begin{tabular}{@{}ll@{}}
 \@students
 \end{tabular}
-\vspace*{3mm}
-\end{center}
+\end{flushright}
+\end{minipage}
 
-%\vspace*{2mm}
+\vfill
 \rule{\textwidth}{0.01in}
 }
 

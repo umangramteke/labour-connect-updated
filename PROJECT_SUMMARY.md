@@ -18,7 +18,6 @@
 - **Project Title:** Labour Connect — Blue-Collar Employment & On-Demand Hyperlocal Trade Services Platform
 - **Course:** Web Technology (WT) Laboratory / Project Submission (Course Code: 2310362L)
 - **Academic Year:** 2026 – 2027
-- **Plagiarism Assessment:** 4% Similarity Index (Turnitin Screened, $\le$ 10% SPPU Limit Compliant)
 - **Architecture:** MERN-Equivalent Modern Full Stack (MongoDB, Express.js, React 18, Node.js)
 - **Previous Architecture (Preserved as Backup):** Java 17 + Spring Boot 3 + Hibernate / JPA + MySQL
 - **Live Frontend URL:** [https://labour-connect-updated.vercel.app/](https://labour-connect-updated.vercel.app/)

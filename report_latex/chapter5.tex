@@ -98,5 +98,53 @@ The development methodology followed an agile, test-driven approach:
     \item \textbf{Cloud Deployment Pipeline:} Established automated Git hooks deploying to Render and Vercel.
 \end{enumerate}
 
-\vspace{10mm}
+\section{System User Interface and Website Screenshots}
+The user interface of Labour Connect is designed with a modern, responsive layout prioritizing accessibility for daily-wage workers, employers, customers, and trade technicians. The system is deployed and accessible live at \url{https://labour-connect-updated.vercel.app/}. Figures~\ref{fig:screenshot_landing} through \ref{fig:screenshot_deployment} display the primary operational views of the production application.
+
+\subsection{Landing and Discovery Interface}
+Figure~\ref{fig:screenshot_landing} depicts the landing page of Labour Connect, presenting the platform's dual operational verticals: the skilled daily-wage employment marketplace and on-demand hyperlocal trade bookings.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.92\textwidth]{screenshot_landing}
+\caption{Labour Connect Landing Interface featuring Dual Operational Portals}\label{fig:screenshot_landing}
+\end{figure}
+
+\subsection{Skilled Jobs Marketplace}
+Figure~\ref{fig:screenshot_jobs} shows the public job browsing and filtering module, allowing workers to search vacancies by trade category, employment model (daily-wage or monthly), and wage threshold.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.92\textwidth]{screenshot_jobs}
+\caption{Skilled Employment Marketplace with Real-Time Filtering and Wage Transparency}\label{fig:screenshot_jobs}
+\end{figure}
+
+\subsection{On-Demand Hyperlocal Services Directory}
+Figure~\ref{fig:screenshot_services} displays the verified service provider discovery page, enabling customers to locate certified technicians filtered by trade category and proximity.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.92\textwidth]{screenshot_services}
+\caption{On-Demand Hyperlocal Service Directory and Verified Provider Catalog}\label{fig:screenshot_services}
+\end{figure}
+
+\subsection{Secure Authentication and Role Selection}
+Figure~\ref{fig:screenshot_login} illustrates the centralized authentication interface implementing JWT stateless sessions and role-based access delegation.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\textwidth]{screenshot_login}
+\caption{Authentication Portal Supporting Role-Based Security Governance}\label{fig:screenshot_login}
+\end{figure}
+
+\subsection{Production Cloud Deployment}
+Figure~\ref{fig:screenshot_deployment} demonstrates the successful production deployment of the client tier on Vercel Global Edge Network connected with Render REST API and MongoDB Atlas.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.88\textwidth]{screenshot_deployment}
+\caption{Production Deployment on Vercel Global Edge CDN Infrastructure}\label{fig:screenshot_deployment}
+\end{figure}
+
+\vspace{5mm}
 \hrule
