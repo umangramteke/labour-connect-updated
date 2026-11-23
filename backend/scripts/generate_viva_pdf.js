@@ -1,0 +1,1160 @@
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
+console.log('Generating Labour Connect Viva Master Guide HTML & PDF...');
+
+const htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Labour Connect — Viva Preparation & Technical Master Guide</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 16mm 18mm 16mm;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #0F172A;
+    background-color: #FFFFFF;
+    line-height: 1.6;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Page Break Utilities */
+  .page-break {
+    page-break-after: always;
+    break-after: page;
+  }
+  .avoid-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5 {
+    color: #0F172A;
+    font-weight: 700;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+    line-height: 1.25;
+  }
+
+  h1 {
+    font-size: 20pt;
+    color: #0F172A;
+    border-bottom: 2pt solid #0D9488;
+    padding-bottom: 4px;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 14pt;
+    color: #0F766E;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 3px;
+    margin-top: 18pt;
+  }
+
+  h3 {
+    font-size: 11pt;
+    color: #1E293B;
+    margin-top: 12pt;
+  }
+
+  h4 {
+    font-size: 10pt;
+    color: #334155;
+    margin-top: 8pt;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 8pt;
+    text-align: justify;
+  }
+
+  /* Title Page */
+  .title-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    text-align: center;
+    padding: 20mm 10mm;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #CCFBF1;
+    color: #0F766E;
+    font-weight: 700;
+    font-size: 8.5pt;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12pt;
+  }
+
+  .main-title {
+    font-size: 26pt;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.15;
+    margin-bottom: 8pt;
+  }
+
+  .main-subtitle {
+    font-size: 13pt;
+    color: #475569;
+    max-width: 650px;
+    margin-bottom: 24pt;
+  }
+
+  .meta-card {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 16pt 24pt;
+    width: 100%;
+    max-width: 580px;
+    text-align: left;
+    margin-bottom: 20pt;
+    font-size: 9.5pt;
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 3pt 0;
+    border-bottom: 1px solid #F1F5F9;
+  }
+
+  .meta-label {
+    font-weight: 600;
+    color: #475569;
+  }
+
+  .meta-val {
+    font-weight: 700;
+    color: #0F172A;
+    text-align: right;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10pt 0;
+    font-size: 8.5pt;
+  }
+
+  th, td {
+    padding: 6pt 8pt;
+    border: 1px solid #CBD5E1;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: #F1F5F9;
+    color: #0F172A;
+    font-weight: 700;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #F8FAFC;
+  }
+
+  /* Callout Boxes */
+  .callout {
+    padding: 10pt 12pt;
+    border-radius: 6px;
+    margin: 10pt 0;
+    font-size: 9pt;
+    page-break-inside: avoid;
+  }
+
+  .callout-info {
+    background-color: #F0FDFA;
+    border-left: 4px solid #0D9488;
+    color: #115E59;
+  }
+
+  .callout-warning {
+    background-color: #FFFBEB;
+    border-left: 4px solid #F59E0B;
+    color: #92400E;
+  }
+
+  .callout-exam {
+    background-color: #EFF6FF;
+    border-left: 4px solid #3B82F6;
+    color: #1E40AF;
+  }
+
+  /* Viva Cards */
+  .viva-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 12pt;
+    margin-bottom: 12pt;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    page-break-inside: avoid;
+  }
+
+  .viva-q {
+    font-weight: 700;
+    color: #0F766E;
+    font-size: 10pt;
+    margin-bottom: 6pt;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .viva-badge {
+    background-color: #0F766E;
+    color: #FFFFFF;
+    font-size: 7.5pt;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 6pt;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .viva-ans {
+    font-size: 9.5pt;
+    color: #1E293B;
+    line-height: 1.55;
+    text-align: justify;
+  }
+
+  .viva-followup {
+    margin-top: 8pt;
+    padding-top: 8pt;
+    border-top: 1px dashed #CBD5E1;
+    font-size: 9pt;
+  }
+
+  .viva-followup-q {
+    font-weight: 700;
+    color: #2563EB;
+    margin-bottom: 4pt;
+  }
+
+  /* Code Block */
+  pre, code {
+    font-family: Consolas, "SFMono-Regular", Monaco, monospace;
+    font-size: 8.5pt;
+  }
+
+  pre {
+    background-color: #0F172A;
+    color: #F8FAFC;
+    padding: 8pt 10pt;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 8pt 0;
+    line-height: 1.45;
+  }
+
+  p code, td code {
+    background-color: #F1F5F9;
+    color: #0F766E;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  /* Header/Footer bar */
+  .doc-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    color: #64748B;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 4px;
+    margin-bottom: 14pt;
+  }
+
+  .doc-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    color: #94A3B8;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 4px;
+    margin-top: 18pt;
+  }
+</style>
+</head>
+<body>
+
+<!-- ========================================================================= -->
+<!-- TITLE PAGE                                                                -->
+<!-- ========================================================================= -->
+<div class="title-page page-break">
+  <div class="badge">MIT Academy of Engineering, Pune • Department of Computer Engineering</div>
+  <div class="main-title">LABOUR CONNECT</div>
+  <div class="main-subtitle">Full-Stack MERN Digital Platform for Blue-Collar Skilled Employment & On-Demand Hyperlocal Trade Services</div>
+
+  <div class="meta-card">
+    <div style="font-size: 11pt; font-weight: 800; color: #0F766E; margin-bottom: 8pt; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #0D9488; padding-bottom: 4px;">
+      Academic Viva & Technical Defense Master Dossier
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Course Name:</span>
+      <span class="meta-val">Web Technology (WT) Laboratory</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Course Code & Credits:</span>
+      <span class="meta-val">2310362L (2 Credits, 75 Marks Total)</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Academic Year & Term:</span>
+      <span class="meta-val">2026 – 2027 • Semester V</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Class & Department:</span>
+      <span class="meta-val">Third Year B.Tech • Computer Engineering (Software Engg)</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Project Guide:</span>
+      <span class="meta-val">Mrs. Nita Gore</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Project Coordinator:</span>
+      <span class="meta-val">Mrs. Nita Gore</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Head of Department / Dean:</span>
+      <span class="meta-val">Dr. Manish Giri</span>
+    </div>
+    <div class="meta-row" style="border-bottom: none; margin-top: 6pt; padding-top: 6pt; border-top: 1px solid #E2E8F0;">
+      <span class="meta-label" style="font-weight: 700; color: #0F766E;">Project Team Members:</span>
+      <span class="meta-val"></span>
+    </div>
+    <div style="font-size: 9pt; color: #1E293B; margin-top: 2pt;">
+      1. <strong>Prince Bansal</strong> (PRN: 202401100064 • Roll: TY A3-63)<br>
+      2. <strong>Pankaj Bharsakle</strong> (PRN: 202401100067 • Roll: TY A3-65)<br>
+      3. <strong>Umang Ramteke</strong> (PRN: 202401100068 • Roll: TY A3-66)<br>
+      4. <strong>Ayush Dudhe</strong> (PRN: 202401100073 • Roll: TY A3-70)
+    </div>
+  </div>
+
+  <div style="font-size: 8.5pt; color: #64748B; max-width: 580px;">
+    <strong>Live Deployment URLs:</strong><br>
+    Frontend Client: <a href="https://labour-connect-updated.vercel.app/" style="color:#0F766E; text-decoration:none;">https://labour-connect-updated.vercel.app/</a><br>
+    Backend REST API: <a href="https://labour-connect-updated.onrender.com/api/v1" style="color:#0F766E; text-decoration:none;">https://labour-connect-updated.onrender.com/api/v1</a><br>
+    GitHub Repository: <a href="https://github.com/umangramteke/labour-connect-updated" style="color:#0F766E; text-decoration:none;">umangramteke/labour-connect-updated</a>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PART 1 & 2: OVERVIEW & ZERO TO HERO                                      -->
+<!-- ========================================================================= -->
+<div class="page-break">
+  <div class="doc-header">
+    <span>Labour Connect — Viva Preparation Master Guide</span>
+    <span>Part 1 & 2: Overview & Fundamentals</span>
+  </div>
+
+  <h1>PART 1 — PROJECT OVERVIEW</h1>
+  
+  <h3>1.1 Problem Statement & Background</h3>
+  <p>
+    India's blue-collar and unorganized trade labor market accounts for over 80% of urban construction and maintenance employment. However, it continues to suffer from chronic operational friction:
+  </p>
+  <ul>
+    <li><strong>Information Asymmetry & Middlemen Exploitation:</strong> Daily-wage laborers gather physically at road crossings (<em>nakas</em>) without reliable information on who is hiring, resulting in arbitrary commission deductions by informal labor brokers.</li>
+    <li><strong>Wage Ambiguity:</strong> Employers and shopkeepers lack standardized compensation benchmarks, leading to unfair payment disputes and unpredictable daily earnings.</li>
+    <li><strong>Unverified Hyperlocal Services:</strong> Homeowners struggle to find background-verified electricians, plumbers, and carpenters with clear hourly/base rates, having no recourse in case of shoddy workmanship.</li>
+  </ul>
+
+  <h3>1.2 Project Objectives</h3>
+  <ul>
+    <li>Eliminate informal middlemen by establishing a direct, transparent digital employment portal.</li>
+    <li>Enable transparent wage bidding where workers submit proposed compensation bids (₹/day) directly to verified employers.</li>
+    <li>Deliver an on-demand hyperlocal trade booking engine backed by a mathematically validated 5-step service state machine.</li>
+    <li>Enforce enterprise-grade cryptographic security: stateless JSON Web Tokens (JWT) and salted Bcrypt password hashing across 5 distinct roles.</li>
+    <li>Map and implement all core outcomes of the MIT AOE Web Technology curriculum (2310362L).</li>
+  </ul>
+
+  <h1>PART 2 — UNDERSTANDING LABOUR CONNECT FROM ZERO</h1>
+
+  <h3>2.1 What is Labour Connect in Plain Words?</h3>
+  <p>
+    Labour Connect is an integrated two-in-one web platform. It serves two completely different but complementary economic needs of local communities:
+  </p>
+  
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 20%;">Dimension</th>
+        <th style="width: 40%;">Module 1: Employment Connect</th>
+        <th style="width: 40%;">Module 2: On-Demand Service Connect</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Primary Goal</strong></td>
+        <td>Hiring workers for multi-day jobs or monthly employment.</td>
+        <td>Booking immediate household technical repairs.</td>
+      </tr>
+      <tr>
+        <td><strong>Target Users</strong></td>
+        <td>Contractors, Builders, Retail Shopkeepers & Skilled Workers.</td>
+        <td>Residents/Homeowners & Licensed Trade Contractors.</td>
+      </tr>
+      <tr>
+        <td><strong>Compensation Model</strong></td>
+        <td>Daily wage rate (₹/day) or Monthly salary (₹/month).</td>
+        <td>Base visiting fee + Hourly labor rate.</td>
+      </tr>
+      <tr>
+        <td><strong>Interaction Flow</strong></td>
+        <td>Job Posting &rarr; Worker Bid Application &rarr; Employer Hiring.</td>
+        <td>Category Proximity Search &rarr; Booking &rarr; 5-Step Execution.</td>
+      </tr>
+      <tr>
+        <td><strong>Real-World Example</strong></td>
+        <td><em>"I need 2 masons for 5 days to build a brick wall."</em></td>
+        <td><em>"My kitchen sink pipe is leaking; I need a plumber now."</em></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>2.2 The Unified Role Architecture</h3>
+  <p>
+    The platform serves 5 specialized actors, all managed within a single database and unified login portal:
+  </p>
+  <ol>
+    <li><strong>Administrator (<code>ROLE_ADMIN</code>):</strong> Audits platform stats, verifies contractor licenses, adjudicates disputes, and manages service categories.</li>
+    <li><strong>Employer (<code>ROLE_EMPLOYER</code>):</strong> Posts daily-wage/regular job vacancies, evaluates worker bids, and hires candidates.</li>
+    <li><strong>Worker (<code>ROLE_WORKER</code>):</strong> Maintains a skills profile, browses open jobs, and applies with custom daily wage bids.</li>
+    <li><strong>Customer (<code>ROLE_CUSTOMER</code>):</strong> Searches local technicians by proximity, books service requests, tracks status, and leaves reviews.</li>
+    <li><strong>Service Provider (<code>ROLE_PROVIDER</code>):</strong> Accepts booking requests, dispatches technicians, updates 5-step progress, and logs final bills.</li>
+  </ol>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PART 3: COMPLETE TECHNOLOGY STACK                                         -->
+<!-- ========================================================================= -->
+<div class="page-break">
+  <div class="doc-header">
+    <span>Labour Connect — Viva Preparation Master Guide</span>
+    <span>Part 3: Complete Technology Stack Deep Dive</span>
+  </div>
+
+  <h1>PART 3 — COMPLETE TECHNOLOGY STACK DEEP DIVE</h1>
+  <p>
+    Every technology in Labour Connect was chosen to fulfill modern decoupled web development standards. Below is the technical breakdown you must master for your viva:
+  </p>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Tech 1 • Presentation</span>
+      React.js 18 (Single Page Application Library)
+    </div>
+    <div class="viva-ans">
+      <strong>What it is:</strong> A component-driven declarative JavaScript library developed by Meta for building dynamic user interfaces.
+      <br><strong>Why used:</strong> Traditional server-rendered web applications reload the entire browser page on every link click. React uses a Virtual DOM—an in-memory representation of the actual DOM. When state changes, React’s reconciliation algorithm (Fiber) calculates the minimum difference (diffing) and updates only the altered DOM nodes. This allows Labour Connect to deliver instantaneous job filtering, modal dialogs, and real-time status transitions with zero page flickering.
+      <br><strong>Where in Project:</strong> Entire <code>frontend/src/</code> directory (e.g. <code>JobBrowsePage.jsx</code>, <code>ServiceDiscoveryPage.jsx</code>).
+      <br><strong>Alternatives:</strong> Angular (heavier, opinionated enterprise framework), Vue.js (progressive framework), or Svelte (compile-time framework). React was selected due to industry prevalence, lightweight modularity, and rich ecosystem.
+    </div>
+    <div class="viva-followup">
+      <div class="viva-followup-q">Examiner Follow-up: What are React Hooks and why do we use useState and useEffect?</div>
+      <div class="viva-ans">
+        React Hooks are special functions introduced in React 16.8 that allow functional components to manage local state and lifecycle events without writing legacy ES6 class components. In our project, <code>useState</code> stores dynamic data that affects rendering—such as the worker's bid input or active filter category. When the setter function (e.g., <code>setBidAmount()</code>) is invoked, React schedules a re-render. The <code>useEffect</code> hook manages asynchronous side effects, such as fetching job data via Axios on component mount (<code>useEffect(..., [])</code>).
+      </div>
+    </div>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Tech 2 • Build Tool</span>
+      Vite 5 (Next-Generation Frontend Tooling)
+    </div>
+    <div class="viva-ans">
+      <strong>What it is:</strong> A modern frontend build tool that leverages native browser ES Modules (ESM) during development and Rollup for production bundling.
+      <br><strong>Why used:</strong> Legacy bundlers like Webpack crawl and bundle the entire dependency graph before starting the development server. Vite serves source code over native ESM, starting local development in under 300ms. For production, running <code>npm run build</code> executes Rollup, performing aggressive tree-shaking, CSS code-splitting, and minification. In our project, 1,672 modules compiled in just 3.56 seconds into compact production assets.
+      <br><strong>Alternatives:</strong> Webpack, Create-React-App (deprecated), Parcel.
+    </div>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Tech 3 • Server Runtime</span>
+      Node.js & Express.js 4.19 (Application Gateway)
+    </div>
+    <div class="viva-ans">
+      <strong>What it is:</strong> Node.js is an open-source, asynchronous event-driven JavaScript runtime built on Chrome's V8 engine. Express.js is a minimal, unopinionated web framework for Node.js.
+      <br><strong>Why used:</strong> Node.js uses a single-threaded event loop backed by <code>libuv</code> for non-blocking asynchronous I/O. When an HTTP request initiates a MongoDB query, Node delegates the I/O to system threads and continues processing other incoming network requests. Once the database responds, an event callback executes and sends the HTTP response. Express provides route organization (<code>/api/v1/*</code>), middleware pipelines (CORS, Helmet, Body Parser), and centralized error handling.
+      <br><strong>Alternatives:</strong> Java Spring Boot, Python Django/FastAPI, Go Gin. Node was chosen to unify JavaScript across client and server.
+    </div>
+    <div class="viva-followup">
+      <div class="viva-followup-q">Examiner Follow-up: If Node.js is single-threaded, how does it handle thousands of concurrent requests?</div>
+      <div class="viva-ans">
+        Node.js delegates all blocking operations—such as file system access, network calls, and database transactions over TCP—to the underlying operating system kernel or the <code>libuv</code> thread pool. The single main execution thread only handles event registration and callback dispatching. Because the main thread never blocks waiting for I/O completion, a single Node server can maintain tens of thousands of active socket connections with minimal RAM overhead compared to thread-per-request servers.
+      </div>
+    </div>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Tech 4 • Persistence</span>
+      MongoDB Atlas & Mongoose 8.3 (Cloud Document Database)
+    </div>
+    <div class="viva-ans">
+      <strong>What it is:</strong> MongoDB Atlas is a cloud-hosted NoSQL document database. Mongoose is an Object Data Modeling (ODM) library providing strict schema definitions and validation.
+      <br><strong>Why used:</strong> Blue-collar marketplace data is naturally hierarchical: worker profiles have skill ID arrays (<code>[1, 4, 9]</code>), dynamic wage rates, and geographic coordinates. Storing this in MongoDB requires a single BSON document, whereas relational SQL databases require multiple junction tables and expensive multi-table <code>JOIN</code> operations. Mongoose enforces strict schemas, data types, and required field validations directly in application code.
+      <br><strong>Alternatives:</strong> MySQL, PostgreSQL, Oracle DB, Cassandra.
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PART 4 & 5: ARCHITECTURE & CODE INVENTORY                                 -->
+<!-- ========================================================================= -->
+<div class="page-break">
+  <div class="doc-header">
+    <span>Labour Connect — Viva Preparation Master Guide</span>
+    <span>Part 4 & 5: System Architecture & Code Hierarchy</span>
+  </div>
+
+  <h1>PART 4 — SYSTEM ARCHITECTURE & REQUEST LIFECYCLE</h1>
+
+  <h3>4.1 The Three-Tier Decoupled Pattern</h3>
+  <pre>
+[ TIER 1: CLIENT PRESENTATION ]  ──> React 18 SPA + Tailwind CSS + Vite (Hosted on Vercel Global Edge CDN)
+               │
+               ▼  HTTPS / RESTful JSON / Header: "Authorization: Bearer &lt;JWT&gt;"
+[ TIER 2: APPLICATION GATEWAY ]  ──> Node.js 24 + Express.js 4 (Hosted on Render Cloud Web Services)
+               │                     Middlewares: Helmet &bull; CORS &bull; JWT Auth &bull; RBAC Guard &bull; Controllers &bull; Haversine
+               ▼  TCP Mongoose Connection / BSON Documents
+[ TIER 3: PERSISTENCE LAYER ]    ──> MongoDB Atlas Managed Cluster (AWS Mumbai ap-south-1)
+                                     15 Collections &bull; Atomic Sequence Counters &bull; Compound Indexes
+  </pre>
+
+  <h3>4.2 Step-by-Step Flow: What Happens When a Customer Books a Service</h3>
+  <p>
+    When Customer Priya books an electrician, the system executes this exact 10-step sequence across all three tiers:
+  </p>
+  <ol>
+    <li><strong>User Input:</strong> Customer selects category #2 (Electrical), enters service address ("Flat 302, Bellandur"), selects tomorrow's date, and clicks "Confirm Booking" in <code>BookServiceModal.jsx</code>.</li>
+    <li><strong>Client Validation:</strong> React ensures the address and date fields are non-empty and that the scheduled date is not in the past.</li>
+    <li><strong>Axios Interceptor:</strong> The HTTP client reads the JWT from <code>localStorage</code> and attaches <code>Authorization: Bearer &lt;token&gt;</code> to the request header.</li>
+    <li><strong>Network Dispatch:</strong> A secure HTTPS <code>POST</code> request is transmitted across the internet to <code>https://labour-connect-updated.onrender.com/api/v1/requests</code>.</li>
+    <li><strong>Express Routing & Security:</strong> The request enters <code>server.js</code>, where Helmet applies security headers, CORS verifies origin access, and Express parses the JSON body into <code>req.body</code>.</li>
+    <li><strong>Authentication Middleware:</strong> <code>verifyToken</code> in <code>auth.js</code> mathematically verifies the token signature using <code>JWT_SECRET</code>. It confirms the user is valid and sets <code>req.user = { id: 9, roles: ['ROLE_CUSTOMER'] }</code>.</li>
+    <li><strong>Authorization Guard:</strong> <code>hasRole('ROLE_CUSTOMER')</code> in <code>rbac.js</code> verifies that the caller has customer authority.</li>
+    <li><strong>Controller Execution:</strong> In <code>serviceRequestController.js</code>, the controller verifies that the target provider exists, is verified, and that base rates are positive.</li>
+    <li><strong>Atomic ID Generation:</strong> The controller calls <code>getNextSequenceValue('service_requests')</code>, which atomically increments the counter in MongoDB to produce a collision-free integer ID (e.g., ID: <code>5</code>).</li>
+    <li><strong>Database Persistence & Response:</strong> Mongoose creates the new document with initial state <code>REQUESTED</code>. The server logs an audit record and returns an HTTP 201 Created response. React triggers a green toast notification and updates the customer's active bookings list.</li>
+  </ol>
+
+  <h1>PART 5 — PROJECT FILE & DIRECTORY RESPONSIBILITY MATRIX</h1>
+  
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 28%;">File Path</th>
+        <th style="width: 32%;">Core Technical Responsibility</th>
+        <th style="width: 20%;">Key Concepts Used</th>
+        <th style="width: 20%;">Likely Viva Question</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>backend/src/server.js</code></td>
+        <td>Main entry point; initializes Express, mounts middleware, connects MongoDB, seeds data, listens on port 8081.</td>
+        <td>Express pipeline, CORS, Helmet, Morgan, graceful exit.</td>
+        <td><em>"Explain the order of middlewares in server.js."</em></td>
+      </tr>
+      <tr>
+        <td><code>backend/src/middleware/auth.js</code></td>
+        <td>Extracts Bearer token from headers, verifies cryptographic signature, attaches decoded payload to <code>req.user</code>.</td>
+        <td>JWT, HMAC-SHA256, HTTP 401 Unauthorized handling.</td>
+        <td><em>"How does the server authenticate stateless tokens?"</em></td>
+      </tr>
+      <tr>
+        <td><code>backend/src/middleware/rbac.js</code></td>
+        <td>Inspects <code>req.user.roles</code> to ensure the user possesses the required authority before allowing controller execution.</td>
+        <td>Authorization, RBAC, HTTP 403 Forbidden handling.</td>
+        <td><em>"What is the difference between 401 and 403?"</em></td>
+      </tr>
+      <tr>
+        <td><code>backend/src/controllers/serviceRequestController.js</code></td>
+        <td>Manages the 5-step service state machine, validates chronological transitions, and handles customer cancellations.</td>
+        <td>Finite State Machine, lifecycle dictionaries, audit logs.</td>
+        <td><em>"How do you prevent a provider skipping steps?"</em></td>
+      </tr>
+      <tr>
+        <td><code>backend/src/utils/haversine.js</code></td>
+        <td>Computes great-circle distance in kilometers between customer and provider coordinates on Earth's sphere.</td>
+        <td>Haversine formula, trigonometric radians, geographic radius.</td>
+        <td><em>"Why not use Euclidean distance for maps?"</em></td>
+      </tr>
+      <tr>
+        <td><code>backend/src/models/Counter.js</code></td>
+        <td>Generates atomic, auto-incrementing integer IDs to ensure clean, human-readable URL routes.</td>
+        <td>MongoDB atomic <code>findOneAndUpdate</code>, <code>$inc</code>.</td>
+        <td><em>"Why not rely solely on MongoDB ObjectIds?"</em></td>
+      </tr>
+      <tr>
+        <td><code>frontend/src/context/AuthContext.jsx</code></td>
+        <td>Centralizes JWT token and user profile in global React state; provides login, logout, and role dashboard routing.</td>
+        <td>React Context API, <code>localStorage</code>, route resolver.</td>
+        <td><em>"How do you solve prop-drilling in React?"</em></td>
+      </tr>
+      <tr>
+        <td><code>frontend/src/services/api.js</code></td>
+        <td>Configures Axios instance; injects JWT Bearer headers into outgoing calls; unwraps responses; redirects on 401.</td>
+        <td>Axios interceptors, Promise handling, base URL configs.</td>
+        <td><em>"How do Axios interceptors simplify API calls?"</em></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PART 6 & 7: MODULE DEEP DIVES & STATE MACHINE                             -->
+<!-- ========================================================================= -->
+<div class="page-break">
+  <div class="doc-header">
+    <span>Labour Connect — Viva Preparation Master Guide</span>
+    <span>Part 6 & 7: Module Deep Dives & Algorithms</span>
+  </div>
+
+  <h1>PART 6 — MODULE 1: EMPLOYMENT CONNECT</h1>
+  
+  <h3>6.1 Dual Wage Models in a Single Architecture</h3>
+  <p>
+    A key innovation of Labour Connect is supporting both informal daily-wage labor and formal monthly employment within a single unified schema (<code>Job.js</code>):
+  </p>
+  <ul>
+    <li><strong>Daily-Wage Model (<code>DAILY_WAGE</code>):</strong> For temporary construction, masonry, painting, or loading work. The employer specifies <code>dailyWage</code> (e.g., ₹1,000/day) and <code>estimatedDays</code> (e.g., 5 days). Workers bid on their daily rate, and employers can calculate the exact project cost.</li>
+    <li><strong>Regular Salaried Model (<code>REGULAR</code>):</strong> For permanent store assistants, cashiers, and shop helpers. The employer specifies <code>minMonthlySalary</code> (e.g., ₹18,000), <code>maxMonthlySalary</code> (e.g., ₹24,000), and <code>workingHours</code> (e.g., "10:00 AM - 8:00 PM, 6 days/week").</li>
+  </ul>
+
+  <h3>6.2 Concurrency & Duplicate Bid Prevention</h3>
+  <p>
+    To ensure fairness, a worker cannot submit multiple conflicting bids on the same job vacancy. This is enforced at two distinct levels:
+  </p>
+  <ol>
+    <li><strong>Controller Verification:</strong> In <code>jobController.js</code>, before creating a bid, the server queries <code>JobApplication.findOne({ jobId, workerId: req.user.id })</code>. If a match is found, an HTTP 400 error is returned immediately.</li>
+    <li><strong>Database Compound Index:</strong> In MongoDB, the <code>JobApplication</code> collection has a compound unique index on <code>{ jobId: 1, workerId: 1 }</code>. Even if two asynchronous requests arrive at the exact same millisecond, MongoDB's storage engine enforces uniqueness and prevents duplicate records.</li>
+  </ol>
+
+  <h1>PART 7 — MODULE 2: ON-DEMAND SERVICE PROVIDER</h1>
+
+  <h3>7.1 The 5-Step Service Lifecycle State Machine</h3>
+  <p>
+    To prevent fraud and billing disputes, service bookings cannot jump arbitrarily between states. Every order must follow a strict finite state machine enforced in <code>serviceRequestController.js</code>:
+  </p>
+
+  <pre>
+  [REQUESTED] ──(Provider Accepts)──> [ACCEPTED] ──(Technician Dispatches)──> [ON_THE_WAY]
+       │                                   │                                         │
+       ├──(Provider Rejects)──> [REJECTED] │                                         ▼
+       └──(Customer Cancels)──> [CANCELLED]┘                                [SERVICE_STARTED]
+                                                                                     │
+                                                                           (Repairs Finished)
+                                                                                     ▼
+                                                                                [COMPLETED]
+  </pre>
+
+  <div class="callout callout-info">
+    <strong>Enforcement Logic in Code:</strong>
+    The controller defines an <code>allowedTransitions</code> map. If the current status is <code>ACCEPTED</code>, the only legal subsequent status is <code>ON_THE_WAY</code> (or <code>CANCELLED</code> by customer). If a provider attempts to jump directly from <code>ACCEPTED</code> to <code>COMPLETED</code>, the backend returns an HTTP 400 Bad Request error.
+  </div>
+
+  <h3>7.2 Hyperlocal Distance Matching: The Haversine Formula</h3>
+  <p>
+    When a customer searches for nearby plumbers, the server calculates the real-world distance between the customer coordinate $(\phi_1, \lambda_1)$ and provider coordinate $(\phi_2, \lambda_2)$ using the <strong>Haversine formula</strong> implemented in <code>backend/src/utils/haversine.js</code>:
+  </p>
+  
+  <p style="text-align: center; font-weight: 600;">
+    $$a = \sin^2\left(\frac{\Delta \phi}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\Delta \lambda}{2}\right)$$
+    $$c = 2 \cdot \operatorname{atan2}\left(\sqrt{a}, \sqrt{1-a}\right)$$
+    $$d = R \cdot c$$
+  </p>
+  <p>
+    Where $\phi$ denotes latitude in radians, $\lambda$ denotes longitude in radians, $\Delta \phi = \phi_2 - \phi_1$, $\Delta \lambda = \lambda_2 - \lambda_1$, and $R = 6,371\text{ km}$ (Earth's mean spherical radius). The provider is included in search results if and only if $d \le \text{serviceAreaRadiusKm}$.
+  </p>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PART 8 & 9: DATABASE & RESTFUL API DEEP DIVES                              -->
+<!-- ========================================================================= -->
+<div class="page-break">
+  <div class="doc-header">
+    <span>Labour Connect — Viva Preparation Master Guide</span>
+    <span>Part 8 & 9: Database & RESTful API Deep Dives</span>
+  </div>
+
+  <h1>PART 8 — DATABASE DESIGN & PERSISTENCE DEEP DIVE</h1>
+
+  <h3>8.1 Why MongoDB Over Relational SQL Databases?</h3>
+  <p>
+    In university viva examinations, examiners frequently ask: <em>"Why did you choose a NoSQL database like MongoDB over relational systems like MySQL?"</em> Here is the precise technical justification:
+  </p>
+  <ul>
+    <li><strong>Document Polymorphism:</strong> In Labour Connect, a <code>WorkerProfile</code> contains skill tags, multiple contact numbers, daily/hourly compensation rates, and geographic coordinates. Storing this in MySQL requires normalizing data across 4 tables (<code>workers</code>, <code>skills</code>, <code>worker_skills</code>, <code>addresses</code>), requiring multi-table SQL <code>JOIN</code> operations on every search query. MongoDB stores all related data in a single, high-speed BSON document.</li>
+    <li><strong>Flexible Schema Evolution:</strong> Adding new fields (such as GST identification numbers for enterprise contractors or emergency night-shift wage surcharges) does not require locking tables with expensive SQL <code>ALTER TABLE</code> migrations.</li>
+    <li><strong>High Read Throughput:</strong> Hyperlocal search queries read thousands of records per second. MongoDB’s memory-mapped storage engine (WiredTiger) provides superior read latency compared to traditional disk-heavy relational databases.</li>
+  </ul>
+
+  <h3>8.2 Atomic Integer ID Generator Pattern</h3>
+  <p>
+    MongoDB generates 24-character hexadecimal IDs by default (e.g. <code>_id: 654a1b2c3d4e5f...</code>). However, our API contracts require clean, human-readable integer IDs (<code>id: 1, 2, 3</code>) to match industry REST standards. We solved this by creating an atomic counter schema in <code>Counter.js</code>:
+  </p>
+  <pre>
+// backend/src/models/Counter.js
+const counterSchema = new mongoose.Schema({
+  _id: { type: String, required: true },
+  seq: { type: Number, default: 0 }
+});
+
+async function getNextSequenceValue(sequenceName) {
+  const counter = await Counter.findByIdAndUpdate(
+    sequenceName,
+    { $inc: { seq: 1 } },
+    { new: true, upsert: true }
+  );
+  return counter.seq;
+}
+  </pre>
+  <p>
+    Because MongoDB guarantees that single-document updates are strictly atomic, simultaneous requests calling <code>getNextSequenceValue('jobs')</code> will never collide or generate duplicate identifier numbers.
+  </p>
+
+  <h1>PART 9 — RESTFUL API ARCHITECTURE & STANDARDIZATION</h1>
+
+  <h3>9.1 The Six Core REST Architectural Constraints</h3>
+  <ol>
+    <li><strong>Client-Server Separation:</strong> React frontend and Express backend operate independently over HTTPS.</li>
+    <li><strong>Statelessness:</strong> The server stores no session memory; every request contains full authentication in the Bearer JWT.</li>
+    <li><strong>Cacheability:</strong> Static responses (such as trade categories and skills catalog) can be cached by the client.</li>
+    <li><strong>Uniform Interface:</strong> Standard HTTP verbs (GET for reading, POST for creating, PUT for updating, DELETE for removing).</li>
+    <li><strong>Layered System:</strong> The client cannot distinguish whether it is communicating directly with the backend server or an intermediate proxy/CDN (Render / Cloudflare).</li>
+    <li><strong>Code on Demand:</strong> (Optional constraint) Frontend JavaScript executes in the client browser.</li>
+  </ol>
+
+  <h3>9.2 Standardized JSON Response Envelope</h3>
+  <p>
+    All 48 endpoints in Labour Connect return a standardized envelope defined in <code>apiResponse.js</code>:
+  </p>
+  <pre>
+{
+  "success": true,
+  "message": "Login successful.",
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "tokenType": "Bearer",
+    "user": { "id": 1, "email": "admin@labourconnect.com", "roles": ["ROLE_ADMIN"] }
+  },
+  "timestamp": "2026-11-23T18:00:00.000Z"
+}
+  </pre>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PART 10 & 11: SOURCE CODE WALKTHROUGH                                     -->
+<!-- ========================================================================= -->
+<div class="page-break">
+  <div class="doc-header">
+    <span>Labour Connect — Viva Preparation Master Guide</span>
+    <span>Part 10 & 11: Source Code Walkthrough</span>
+  </div>
+
+  <h1>PART 10 — KEY SOURCE CODE EXPLANATION</h1>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">File 1</span>
+      backend/src/middleware/auth.js (JWT Verification Middleware)
+    </div>
+    <div class="viva-ans">
+      <strong>Purpose:</strong> Secures protected endpoints by verifying the HMAC-SHA256 signature of incoming Bearer tokens.
+      <pre>
+const jwt = require('jsonwebtoken');
+const ApiResponse = require('../utils/apiResponse');
+
+function verifyToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json(ApiResponse.error('Access denied. No token provided.'));
+  }
+
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; // Attaches user identity (id, email, roles) to request
+    next();             // Passes control to the next middleware or controller
+  } catch (err) {
+    return res.status(401).json(ApiResponse.error('Invalid or expired token.'));
+  }
+}
+      </pre>
+      <strong>Why this matters in Viva:</strong> If an examiner asks <em>"What happens if a token is modified by an attacker?"</em>, explain that changing even a single character in the payload causes <code>jwt.verify()</code> to fail because the calculated HMAC-SHA256 hash will not match the token's cryptographic signature, immediately returning HTTP 401 Unauthorized.
+    </div>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">File 2</span>
+      backend/src/controllers/authController.js (Robust Login Matching)
+    </div>
+    <div class="viva-ans">
+      <strong>Purpose:</strong> Authenticates users, compares salted password hashes, and provides multi-layer tolerance for evaluation.
+      <pre>
+// Tolerant password comparison logic inside login()
+const rawPassword = String(password);
+const trimmedPassword = rawPassword.trim();
+let isMatch = await bcrypt.compare(rawPassword, user.passwordHash);
+
+// Tolerance 1: Trimmed whitespace fallback (guards against copy-paste spaces)
+if (!isMatch && trimmedPassword !== rawPassword) {
+  isMatch = await bcrypt.compare(trimmedPassword, user.passwordHash);
+}
+
+// Tolerance 2: Case-insensitive fallback for demo seed accounts
+if (!isMatch) {
+  const lower = trimmedPassword.toLowerCase();
+  const capitalized = lower.charAt(0).toUpperCase() + lower.slice(1);
+  if (lower !== trimmedPassword && (await bcrypt.compare(lower, user.passwordHash))) {
+    isMatch = true;
+  } else if (capitalized !== trimmedPassword && (await bcrypt.compare(capitalized, user.passwordHash))) {
+    isMatch = true;
+  }
+}
+      </pre>
+      <strong>Why this matters in Viva:</strong> This ensures that accidental trailing spaces during viva evaluation never lock out the examiner, while maintaining cryptographic Bcrypt hashing security.
+    </div>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">File 3</span>
+      frontend/src/pages/LoginPage.jsx (1-Click Demo Login Panel)
+    </div>
+    <div class="viva-ans">
+      <strong>Purpose:</strong> Provides rapid role selection during examination and testing without manual typing.
+      <pre>
+&lt;div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-xs"&gt;
+  &lt;button onClick={() =&gt; { setEmail('admin@labourconnect.com'); setPassword('Admin@1234'); }}&gt;
+    🔑 Admin
+  &lt;/button&gt;
+  &lt;button onClick={() =&gt; { setEmail('employer@labourconnect.com'); setPassword('Employer@1234'); }}&gt;
+    🏢 Employer
+  &lt;/button&gt;
+  &lt;button onClick={() =&gt; { setEmail('worker@labourconnect.com'); setPassword('Worker@1234'); }}&gt;
+    👷 Worker
+  &lt;/button&gt;
+  &lt;button onClick={() =&gt; { setEmail('customer@labourconnect.com'); setPassword('Customer@1234'); }}&gt;
+    👤 Customer
+  &lt;/button&gt;
+  &lt;button onClick={() =&gt; { setEmail('provider@labourconnect.com'); setPassword('Provider@1234'); }}&gt;
+    🛠️ Provider
+  &lt;/button&gt;
+&lt;/div&gt;
+      </pre>
+      <strong>Why this matters in Viva:</strong> During live examination, you can switch personas in 2 seconds to demonstrate the entire platform flow without hesitation or typing mistakes.
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PART 12 & 13: SYLLABUS MAPPING & PRACTICAL VIVA                           -->
+<!-- ========================================================================= -->
+<div class="page-break">
+  <div class="doc-header">
+    <span>Labour Connect — Viva Preparation Master Guide</span>
+    <span>Part 12 & 13: Syllabus & Practical Viva Preparation</span>
+  </div>
+
+  <h1>PART 12 — SYLLABUS PRACTICAL-WISE VIVA PREPARATION</h1>
+  <p>
+    The practical examination assesses your understanding of all 7 laboratory practicals under Course <strong>2310362L</strong>. Below is the comprehensive practical-by-practical viva guide:
+  </p>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Practical 01 • 10 Hours</span>
+      HTML, CSS and Responsive Frameworks (Bootstrap / Tailwind CSS)
+    </div>
+    <div class="viva-ans">
+      <strong>Objective:</strong> Design and develop a responsive single page web application using HTML/DHTML, CSS3, and modern layout frameworks.
+      <br><strong>Labour Connect Implementation:</strong> Built using <strong>Tailwind CSS 3.4</strong>, a utility-first CSS framework. We implemented a fully responsive grid system adapting across mobile, tablet, and desktop viewports using breakpoints (<code>sm:</code>, <code>md:</code>, <code>lg:</code>). Key responsive elements include the collapsible mobile drawer in <code>Navbar.jsx</code>, responsive card grids in <code>JobBrowsePage.jsx</code>, and mobile-friendly touch targets.
+      <br><strong>Sample Viva Question (200+ Words):</strong>
+      <br><em>Examiner Question: What are CSS media queries, and how does mobile-first responsive design work in your project?</em>
+      <br><strong>Model Answer:</strong> In modern web development, responsive design ensures that a web application adjusts its visual layout, element dimensions, and navigational hierarchy dynamically across varying screen resolutions—from small smartphone screens (360px wide) to ultra-wide desktop monitors (1920px wide). This responsiveness is fundamentally driven by CSS3 Media Queries. A media query is a CSS technique that applies specific style blocks only when a device matches specified criteria, primarily viewport width (e.g. <code>@media (min-width: 768px)</code>). 
+      In our Labour Connect project, we implemented a <em>mobile-first</em> styling strategy using Tailwind CSS. In a mobile-first paradigm, base CSS rules are written without media queries to target mobile devices by default, ensuring fast rendering on low-power mobile browsers. Progressive enhancements are layered using minimum-width breakpoints. For example, in our job listing grid, the container class is written as <code>grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3</code>. On a mobile viewport, the container defaults to a single column (<code>grid-cols-1</code>). When the viewport expands past 768px (medium breakpoint), the media query triggers two columns; past 1024px (large breakpoint), it seamlessly expands to three columns. This approach eliminates horizontal scrolling and ensures optimal accessibility for daily-wage laborers using budget mobile smartphones.
+    </div>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Practical 02 • 10 Hours</span>
+      JavaScript Fundamentals, Arrays, JSON & Client Validation
+    </div>
+    <div class="viva-ans">
+      <strong>Objective:</strong> Develop an interactive web application demonstrating the capabilities of JavaScript, client-side validation, JSON parsing, and array manipulation.
+      <br><strong>Labour Connect Implementation:</strong> Extensive use of JavaScript ES6+ features: arrow functions, destructuring, template literals, asynchronous Promises with <code>async/await</code>, array transformations (<code>.map()</code>, <code>.filter()</code>, <code>.reduce()</code>), regex form validation, and JSON payload serialization.
+      <br><strong>Sample Viva Question (200+ Words):</strong>
+      <br><em>Examiner Question: What is JSON, why is it preferred over XML in RESTful APIs, and how does JavaScript handle JSON serialization?</em>
+      <br><strong>Model Answer:</strong> JavaScript Object Notation (JSON) is a lightweight, text-based, human-readable data interchange format derived from the object literal syntax of JavaScript. In modern web architectures like Labour Connect, JSON serves as the universal data contract between our React client and Express backend server. Historically, web services relied on Extensible Markup Language (XML) using SOAP protocols. However, XML is verbose, requiring opening and closing tags (e.g., <code>&lt;dailyWage&gt;1000&lt;/dailyWage&gt;</code>), which significantly increases network payload size. Furthermore, parsing XML in browser environments requires traversing heavy DOM XML document trees, incurring CPU overhead.
+      In contrast, JSON uses concise key-value pairs (<code>{"dailyWage": 1000}</code>), reducing bandwidth consumption over mobile networks. Crucially, JSON maps natively to JavaScript data types: objects map to JavaScript objects, and arrays map to JavaScript arrays. In our project, JavaScript handles data transformation through two built-in methods: <code>JSON.stringify()</code>, which serializes a JavaScript object into a JSON string prior to HTTP transmission, and <code>JSON.parse()</code>, which deserializes an incoming JSON string into an interactive in-memory JavaScript object. When our frontend dispatches a job bid via Axios, Axios automatically invokes <code>JSON.stringify()</code>, and our Express backend middleware (<code>express.json()</code>) parses it back into <code>req.body</code> seamlessly.
+    </div>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Practical 03 • 8 Hours</span>
+      Front-End Frameworks: ReactJS
+    </div>
+    <div class="viva-ans">
+      <strong>Objective:</strong> Design and deploy a web application to demonstrate client-side validation, interactive UI, and component lifecycles using ReactJS.
+      <br><strong>Labour Connect Implementation:</strong> Complete React 18 Single Page Application architecture; custom functional components; hooks (<code>useState</code>, <code>useEffect</code>, <code>useContext</code>, <code>useMemo</code>); declarative routing; dynamic modals for job bidding and service booking.
+      <br><strong>Sample Viva Question (200+ Words):</strong>
+      <br><em>Examiner Question: Explain the React Virtual DOM, how diffing works, and why it is faster than direct Real DOM manipulation.</em>
+      <br><strong>Model Answer:</strong> The Real Document Object Model (DOM) is a tree-structured representation of HTML elements managed directly by the web browser. Direct manipulation of the Real DOM—such as executing <code>document.getElementById().innerHTML = ...</code>—is computationally expensive. Whenever a Real DOM node is modified, the browser engine must recalculate the geometric positioning of all surrounding elements (a process known as <em>reflow</em> or layout calculation) and re-draw the visual pixels on the screen (known as <em>repaint</em>). In complex applications with hundreds of interactive elements, frequent Real DOM mutations result in noticeable UI lag and dropped frame rates.
+      React solves this performance bottleneck by maintaining a lightweight in-memory representation of the UI called the <strong>Virtual DOM</strong>. When state updates occur in our Labour Connect application—for instance, when a customer types a filter keyword into the service search bar—React creates a new Virtual DOM tree representing the updated state. React’s reconciliation algorithm (Fiber) then executes a high-speed diffing heuristic, comparing the previous Virtual DOM snapshot with the new Virtual DOM snapshot in $O(N)$ linear time. The algorithm identifies the exact set of changed nodes, batches all necessary mutations together, and applies only those specific changes to the Real DOM in a single render pass. This batching minimizes browser reflows, ensuring silky-smooth 60fps user interactions.
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PRACTICALS 04 - 07 & SCENARIOS                                           -->
+<!-- ========================================================================= -->
+<div class="page-break">
+  <div class="doc-header">
+    <span>Labour Connect — Viva Preparation Master Guide</span>
+    <span>Practicals 04 to 07 & Scenario Defense</span>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Practical 04 & 05 • 14 Hours</span>
+      Server-Side Development: Node.js & Express.js
+    </div>
+    <div class="viva-ans">
+      <strong>Objective:</strong> Construct and configure a backend server using NodeJS and ExpressJS; implement server-side validation and middleware pipelines.
+      <br><strong>Labour Connect Implementation:</strong> Modular Express architecture; custom auth middleware; RBAC authority guards; centralized error handling; Helmet security headers; CORS origin whitelisting; input validation logic.
+      <br><strong>Sample Viva Question (200+ Words):</strong>
+      <br><em>Examiner Question: What is Express middleware, how does the next() function work, and how did you implement centralized error handling?</em>
+      <br><strong>Model Answer:</strong> In an Express.js application, middleware functions are interceptors that sit directly in the request-response cycle. A middleware function has access to the incoming request object (<code>req</code>), the outgoing response object (<code>res</code>), and the next middleware function in the application pipeline, conventionally denoted by <code>next()</code>. Middleware functions perform vital preprocessing tasks: parsing incoming request bodies (<code>express.json()</code>), setting HTTP security headers (<code>helmet()</code>), enabling cross-origin sharing (<code>cors()</code>), and authenticating tokens (<code>verifyToken</code>). When a middleware completes its designated task successfully, it invokes <code>next()</code>, signaling Express to pass execution control to the subsequent middleware or route controller. If a middleware terminates the cycle by sending a response (e.g., returning HTTP 401 Unauthorized), execution halts and subsequent handlers are not invoked.
+      In Labour Connect, we engineered a dedicated Centralized Error Handler in <code>backend/src/middleware/errorHandler.js</code>. In Express, any middleware with four parameters—<code>(err, req, res, next)</code>—is recognized as an error handler. Whenever an unhandled exception or database failure occurs inside an asynchronous controller, the error is passed down via <code>next(err)</code>. Our centralized handler intercepts the error, logs the stack trace to the server console, maps Mongoose validation errors or duplicate key violations to appropriate HTTP status codes (such as 400 or 500), and returns our clean, standardized <code>ApiResponse.error()</code> JSON envelope, preventing server crashes and avoiding raw stack trace leaks to end users.
+    </div>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Practical 06 & 07 • 18 Hours</span>
+      RESTful APIs & NoSQL Database (MongoDB)
+    </div>
+    <div class="viva-ans">
+      <strong>Objective:</strong> Create APIs to perform CRUD operations, deploy on cloud hosting, test via Postman/Supertest, and interact with MongoDB from Node.js.
+      <br><strong>Labour Connect Implementation:</strong> 48 REST endpoints; MongoDB Atlas cloud clustering; Mongoose ODM; automated integration testing via native Node.js test runner; cloud hosting on Render and Vercel.
+      <br><strong>Sample Viva Question (200+ Words):</strong>
+      <br><em>Examiner Question: What are CRUD operations, and how do they map to HTTP methods and Mongoose query functions in Labour Connect?</em>
+      <br><strong>Model Answer:</strong> In software engineering, CRUD represents the four fundamental persistent storage operations: Create, Read, Update, and Delete. In a RESTful web architecture like Labour Connect, these four database operations map directly to standardized HTTP request verbs and Mongoose ODM model methods, establishing a predictable, uniform API contract:
+      1. <strong>Create (HTTP POST):</strong> Used to persist new entities. In our platform, creating a job vacancy triggers <code>POST /api/v1/jobs</code>. The controller executes Mongoose’s <code>Job.create(req.body)</code> or <code>new Job().save()</code>, allocating a new BSON document in the MongoDB collection and returning an HTTP 201 Created status.
+      2. <strong>Read (HTTP GET):</strong> Used to retrieve data without altering state. Fetching open jobs calls <code>GET /api/v1/jobs</code>. Mongoose executes <code>Job.find({ status: 'OPEN' }).skip(...).limit(...)</code>, returning matching documents in an HTTP 200 OK envelope.
+      3. <strong>Update (HTTP PUT / PATCH):</strong> Used to modify existing entities. Advancing service booking progress calls <code>PUT /api/v1/requests/:id/status</code>. Mongoose executes <code>ServiceRequest.findOneAndUpdate({ id }, { status: newStatus }, { new: true })</code>, returning the updated document.
+      4. <strong>Delete (HTTP DELETE):</strong> Used to remove entities. Canceling a job calls <code>DELETE /api/v1/jobs/:id</code>. In our project, rather than hard-deleting records, Mongoose executes a soft-delete update setting <code>status: 'CLOSED'</code>, preserving referential integrity and audit trails.
+    </div>
+  </div>
+
+  <h1>PART 14 — SCENARIO-BASED VIVA DEFENSE</h1>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Scenario 1 • Reliability</span>
+      What happens if the MongoDB database connection fails or drops in production?
+    </div>
+    <div class="viva-ans">
+      <strong>Technical Defense (215 words):</strong> If our cloud connection to MongoDB Atlas drops—due to network partitioning or cloud provider maintenance—Labour Connect handles the failure gracefully at both backend and frontend tiers. In <code>backend/src/config/db.js</code>, Mongoose is configured with connection retry options: <code>serverSelectionTimeoutMS: 5000</code>. If an incoming request arrives while the database is disconnected, Mongoose’s query promise rejects with a <code>MongooseServerSelectionError</code>.
+      In our Express pipeline, this error is caught and forwarded to <code>errorHandler.js</code> via <code>next(err)</code>. The server logs the database disconnect event to the console and returns an HTTP 500 Internal Server Error envelope containing: <code>{ "success": false, "message": "Database persistence service temporarily unavailable." }</code>. The Node.js server process does not crash because all asynchronous controller functions are wrapped in <code>try...catch</code> blocks.
+      On the client side, our Axios response interceptor receives the 500 response. The calling component catches the rejected promise, stops loading spinners, and invokes our global <code>ToastContext</code> to display a non-intrusive red error alert: *"Unable to complete request. Database service temporarily unreachable."* When connectivity recovers, MongoDB Atlas automatically reconnects without requiring a server reboot.
+    </div>
+  </div>
+
+  <div class="viva-card">
+    <div class="viva-q">
+      <span class="viva-badge">Scenario 2 • Scaling</span>
+      How would you scale Labour Connect if user traffic increased from 100 to 100,000 active users?
+    </div>
+    <div class="viva-ans">
+      <strong>Technical Defense (220 words):</strong> Scaling Labour Connect from 100 to 100,000 concurrent users requires horizontal scaling across all three architectural tiers:
+      1. <strong>Client Tier (Vercel):</strong> Our React SPA already compiles into static HTML, CSS, and minified JavaScript bundles. Vercel automatically caches and distributes these static assets across global Edge Content Delivery Networks (CDNs), handling millions of client hits with zero load on our backend server.
+      2. <strong>Application Tier (Node.js / Express):</strong> Node.js operates on a single execution thread. To scale across multi-core server instances, we would implement the Node.js Cluster Module or deploy the containerized Express app across a Kubernetes cluster behind an NGINX load balancer. Because our JWT authentication is completely stateless (the server stores zero session memory), incoming requests can be load-balanced arbitrarily across any number of backend replicas using round-robin distribution.
+      3. <strong>Database Tier (MongoDB Atlas):</strong> In MongoDB, read scaling can be accomplished by enabling replica sets with secondary read preferences (<code>readPreference: secondaryPreferred</code>) for heavy read queries like public job browsing. Write scaling is achieved through horizontal database <em>sharding</em>, partitioning large collections (like <code>auditlogs</code> and <code>servicerequests</code>) across multiple physical shards using a shard key such as <code>city</code> or <code>createdAt</code>. Finally, implementing Redis in-memory caching for frequently accessed static catalogs (trade categories and master skills) would reduce direct database queries by over 70%.
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PART 15: QUICK REVISION & CREDENTIALS CHEAT SHEET                         -->
+<!-- ========================================================================= -->
+<div>
+  <div class="doc-header">
+    <span>Labour Connect — Viva Preparation Master Guide</span>
+    <span>Part 15: Last-Minute Revision & Credentials</span>
+  </div>
+
+  <h1>PART 15 — LAST-MINUTE REVISION CHEAT SHEET & DEMO CREDENTIALS</h1>
+
+  <div class="callout callout-exam">
+    <strong>HOW TO DEMONSTRATE IN 3 MINUTES:</strong>
+    1. Open <a href="https://labour-connect-updated.vercel.app/" style="color:#1E40AF;">https://labour-connect-updated.vercel.app/</a> &rarr; Show Find Jobs filter sidebar.<br>
+    2. Click Sign In &rarr; Click 1-Click Button <strong>[🏢 Employer]</strong> &rarr; Show active jobs and applicant bids.<br>
+    3. In Incognito window, visit site &rarr; Click <strong>[👷 Worker]</strong> &rarr; Apply to job with a ₹950 bid &rarr; Show toast.<br>
+    4. In main browser, log out &rarr; Click <strong>[👤 Customer]</strong> &rarr; Book Sunil Plumbers for tomorrow.<br>
+    5. Log out &rarr; Click <strong>[🛠️ Provider 1]</strong> &rarr; Accept booking &rarr; Dispatch &rarr; Start work &rarr; Complete booking.
+  </div>
+
+  <h3>Verified Demo Credentials (Pre-Seeded in Database)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Email Address</th>
+        <th>Password</th>
+        <th>Person / Business Name</th>
+        <th>What to Demonstrate in Viva</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Admin</strong></td>
+        <td><code>admin@labourconnect.com</code></td>
+        <td><code>Admin@1234</code></td>
+        <td>Platform Administrator</td>
+        <td>Platform statistics, license approvals, user bans, audit logs.</td>
+      </tr>
+      <tr>
+        <td><strong>Employer</strong></td>
+        <td><code>employer@labourconnect.com</code></td>
+        <td><code>Employer@1234</code></td>
+        <td>Apex Construction (Ramesh Kumar)</td>
+        <td>Post daily/regular jobs, view applicant bids, hire candidates.</td>
+      </tr>
+      <tr>
+        <td><strong>Worker</strong></td>
+        <td><code>worker@labourconnect.com</code></td>
+        <td><code>Worker@1234</code></td>
+        <td>Suresh Sharma (Mason)</td>
+        <td>Browse jobs, filter by wage, submit bids with cover notes.</td>
+      </tr>
+      <tr>
+        <td><strong>Customer</strong></td>
+        <td><code>customer@labourconnect.com</code></td>
+        <td><code>Customer@1234</code></td>
+        <td>Priya Venkatesh (Bellandur)</td>
+        <td>Search nearby verified technicians, book services, review.</td>
+      </tr>
+      <tr>
+        <td><strong>Provider</strong></td>
+        <td><code>provider@labourconnect.com</code></td>
+        <td><code>Provider@1234</code></td>
+        <td>Sunil Master Plumbers</td>
+        <td>Receive bookings, advance 5-step status machine, bill jobs.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Top 10 Technical Definitions to Memorize</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Concept</th>
+        <th style="width: 75%;">One-Sentence Technical Definition for Viva</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>MERN Stack</strong></td>
+        <td>A full-stack software architecture utilizing MongoDB for persistence, Express.js for web framework, React.js for UI presentation, and Node.js for server-side runtime execution.</td>
+      </tr>
+      <tr>
+        <td><strong>Single Page App (SPA)</strong></td>
+        <td>A web application that loads a single HTML document and dynamically rewrites page content via client-side JavaScript without reloading the entire page from the server.</td>
+      </tr>
+      <tr>
+        <td><strong>REST API</strong></td>
+        <td>An architectural style for network communications relying on stateless client-server interactions using standard HTTP verbs (GET, POST, PUT, DELETE) and JSON data representations.</td>
+      </tr>
+      <tr>
+        <td><strong>JWT (JSON Web Token)</strong></td>
+        <td>A compact, URL-safe cryptographic token (RFC 7519) consisting of header, payload, and signature, used for stateless authentication between client and server.</td>
+      </tr>
+      <tr>
+        <td><strong>Bcrypt</strong></td>
+        <td>An adaptive, one-way password hashing function incorporating salt generation and computational work rounds to prevent brute-force dictionary and rainbow table cracking.</td>
+      </tr>
+      <tr>
+        <td><strong>RBAC</strong></td>
+        <td>Role-Based Access Control: an authorization pattern that restricts operations based on assigned user authorities (Admin, Employer, Worker, Customer, Provider).</td>
+      </tr>
+      <tr>
+        <td><strong>NoSQL Document DB</strong></td>
+        <td>A non-relational database that stores data in flexible, semi-structured BSON documents rather than fixed relational rows and columns.</td>
+      </tr>
+      <tr>
+        <td><strong>Haversine Formula</strong></td>
+        <td>A trigonometric equation calculating great-circle distance between two latitude and longitude coordinates on Earth's spherical surface.</td>
+      </tr>
+      <tr>
+        <td><strong>Virtual DOM</strong></td>
+        <td>A lightweight in-memory JavaScript representation of the browser's Real DOM used by React to compute minimal UI diffs before applying batch updates.</td>
+      </tr>
+      <tr>
+        <td><strong>Event Loop</strong></td>
+        <td>Node.js's coordination mechanism that handles asynchronous non-blocking I/O operations by delegating tasks to system threads and dispatching event callbacks upon completion.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="doc-footer">
+    <span>Labour Connect • MIT Academy of Engineering, Pune (2026–2027)</span>
+    <span>Course: Web Technology (2310362L) • Guide: Mrs. Nita Gore</span>
+  </div>
+</div>
+
+</body>
+</html>`;
+
+const htmlPath = path.join(__dirname, '..', '..', 'Labour_Connect_Viva_Master_Guide.html');
+const pdfPath = path.join(__dirname, '..', '..', 'Labour_Connect_Viva_Master_Guide.pdf');
+
+fs.writeFileSync(htmlPath, htmlContent, 'utf-8');
+console.log('HTML generated at:', htmlPath);
+
+const edgePath = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
+const fileUri = 'file:///' + htmlPath.replace(/\\/g, '/');
+
+console.log('Printing HTML to PDF via headless Microsoft Edge...');
+const cmd = `"${edgePath}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${pdfPath}" "${fileUri}"`;
+
+try {
+  execSync(cmd, { stdio: 'inherit' });
+  const stats = fs.statSync(pdfPath);
+  console.log(`PDF successfully created: ${pdfPath} (${stats.size} bytes)`);
+} catch (err) {
+  console.error('Error generating PDF:', err.message);
+  process.exit(1);
+}
