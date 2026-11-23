@@ -53,7 +53,7 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      const userData = await login(email.trim(), password);
+      const userData = await login(email.trim(), password.trim());
       success('Logged in successfully!');
       const destination = location.state?.from?.pathname || dashboardRoute(userData);
       navigate(destination, { replace: true });
@@ -221,6 +221,72 @@ const LoginPage = () => {
 
             <GoogleSignInButton label="Sign in with Google" />
           </form>
+
+          {/* Quick Demo Credentials for Viva / Evaluation */}
+          <div className="mt-5 p-3.5 bg-slate-50 border border-slate-200/90 rounded-xl">
+            <div className="text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-2 flex items-center justify-between">
+              <span>Quick Demo Accounts (1-Click Fill)</span>
+              <span className="text-teal-600 font-semibold text-[10px]">Viva Ready</span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-xs">
+              <button
+                type="button"
+                onClick={() => { setEmail('admin@labourconnect.com'); setPassword('Admin@1234'); setErrorMessage(''); }}
+                className="px-2 py-1.5 bg-white hover:bg-teal-50 hover:border-teal-300 border border-slate-200 rounded-lg text-left text-slate-700 font-medium transition-all shadow-2xs"
+              >
+                <span className="font-semibold text-slate-900 block">🔑 Admin</span>
+                <span className="text-[10px] text-slate-500">Platform Admin</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { setEmail('employer@labourconnect.com'); setPassword('Employer@1234'); setErrorMessage(''); }}
+                className="px-2 py-1.5 bg-white hover:bg-teal-50 hover:border-teal-300 border border-slate-200 rounded-lg text-left text-slate-700 font-medium transition-all shadow-2xs"
+              >
+                <span className="font-semibold text-slate-900 block">🏢 Employer</span>
+                <span className="text-[10px] text-slate-500">Apex Construction</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { setEmail('worker@labourconnect.com'); setPassword('Worker@1234'); setErrorMessage(''); }}
+                className="px-2 py-1.5 bg-white hover:bg-teal-50 hover:border-teal-300 border border-slate-200 rounded-lg text-left text-slate-700 font-medium transition-all shadow-2xs"
+              >
+                <span className="font-semibold text-slate-900 block">👷 Worker</span>
+                <span className="text-[10px] text-slate-500">Suresh Sharma</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { setEmail('customer@labourconnect.com'); setPassword('Customer@1234'); setErrorMessage(''); }}
+                className="px-2 py-1.5 bg-white hover:bg-teal-50 hover:border-teal-300 border border-slate-200 rounded-lg text-left text-slate-700 font-medium transition-all shadow-2xs"
+              >
+                <span className="font-semibold text-slate-900 block">👤 Customer</span>
+                <span className="text-[10px] text-slate-500">Priya (Bellandur)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { setEmail('customer2@labourconnect.com'); setPassword('Customer@1234'); setErrorMessage(''); }}
+                className="px-2 py-1.5 bg-white hover:bg-teal-50 hover:border-teal-300 border border-slate-200 rounded-lg text-left text-slate-700 font-medium transition-all shadow-2xs"
+              >
+                <span className="font-semibold text-slate-900 block">👤 Customer 2</span>
+                <span className="text-[10px] text-slate-500">Anand (HSR)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { setEmail('provider@labourconnect.com'); setPassword('Provider@1234'); setErrorMessage(''); }}
+                className="px-2 py-1.5 bg-white hover:bg-teal-50 hover:border-teal-300 border border-slate-200 rounded-lg text-left text-slate-700 font-medium transition-all shadow-2xs"
+              >
+                <span className="font-semibold text-slate-900 block">🛠️ Provider 1</span>
+                <span className="text-[10px] text-slate-500">Master Plumbers</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { setEmail('provider2@labourconnect.com'); setPassword('Provider@1234'); setErrorMessage(''); }}
+                className="px-2 py-1.5 bg-white hover:bg-teal-50 hover:border-teal-300 border border-slate-200 rounded-lg text-left text-slate-700 font-medium transition-all shadow-2xs"
+              >
+                <span className="font-semibold text-slate-900 block">⚡ Provider 2</span>
+                <span className="text-[10px] text-slate-500">SparkVolt Elect.</span>
+              </button>
+            </div>
+          </div>
 
           {/* Footer inside card */}
           <div className="mt-6 pt-5 border-t border-slate-100 text-center">
